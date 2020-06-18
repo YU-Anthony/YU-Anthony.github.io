@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion" lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -145,7 +145,7 @@
 
 
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
@@ -154,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -360,8 +360,7 @@ white boxes represent processing steps.
 <h4 id="3-Analysis-and-Results"><a href="#3-Analysis-and-Results" class="headerlink" title="3. Analysis and Results"></a>3. Analysis and Results</h4><ul>
 <li>The collected signals were smoothed using hanning window function.  Smoothing window width for each signal was determined by experimentally adjusting the following root mean square error function:</li>
 </ul>
-<p>$$ ERROR=SQRT(\Sigma(X_i-X_{i-1})^2/(2*N))$$</p>
-<p>where $\Sigma$ calculates the sum of first difference between sample values($X_i$ and $X_{i-1}$), and $N$ is the total number of samples. This error value represents the signal’s variability due to sampling rate frequency</p>
+<script type="math/tex; mode=display">ERROR=SQRT(\Sigma(X_i-X_{i-1})^2/(2*N))</script><p>where $\Sigma$ calculates the sum of first difference between sample values($X_i$ and $X_{i-1}$), and $N$ is the total number of samples. This error value represents the signal’s variability due to sampling rate frequency</p>
 <ul>
 <li><p>The smoothing process involved the following steps:</p>
 <ul>
@@ -391,10 +390,7 @@ white boxes represent processing steps.
 <li>Using ‘Peak’ Features<ul>
 <li>$S_D$ is the distance along the x-axis from the local min preceding a peak to the local max of the peak (i.e. peak duration);</li>
 <li>$S_M$  is the distance along the y-axis from the local min preceding a peak to the local max of the peak (i.e. peak magnitude); </li>
-<li>$S_F$  is the number of peaks divided by the task period (i.e. peak frequency).<center>
-<img src="https://ftp.bmp.ovh/imgs/2020/06/49bca630ceb96bc1.png" width="60%" height="60%" div align="center"> 
-
-</li>
+<li>$S_F$  is the number of peaks divided by the task period (i.e. peak frequency).<br><center><br><img src="https://ftp.bmp.ovh/imgs/2020/06/49bca630ceb96bc1.png" width="60%" height="60%" div align="center"> </li>
 </ul>
 </li>
 </ul>
@@ -403,7 +399,8 @@ white boxes represent processing steps.
     color: #999;
     padding: 2px;" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
-<p> Figure 4. Example of a smoothed GSR signal adorned with $S_D$ and $S_M$ features</p>
+ Figure 4. Example of a smoothed GSR signal adorned with $S_D$ and $S_M$ features
+
 </div>
 </center>
 
@@ -415,12 +412,11 @@ white boxes represent processing steps.
     color: #999;
     padding: 2px;" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
-<p> Figure 5. Distribution of $S_F$ feature for task difficulty levels 1, 2, 3 under the ‘no-stress’ and ‘stress’ conditions</p>
+ Figure 5. Distribution of $S_F$ feature for task difficulty levels 1, 2, 3 under the 'no-stress' and 'stress' conditions
 </div>
 
 
-</center>
-
+<p>&lt;/center&gt;</p>
 <center>
 <img src="https://ftp.bmp.ovh/imgs/2020/06/be398a46b5e8baae.png" width="70%" height="70%" div align="center"> 
 
@@ -429,7 +425,7 @@ white boxes represent processing steps.
     color: #999;
     padding: 2px;" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
-<p> Figure 6. Distribution of normalized $S_D$ feature for task difficulty levels 1, 2, 3 under the ‘no-stress’ and ‘stress’ conditions</p>
+ Figure 6. Distribution of normalized $S_D$ feature for task difficulty levels 1, 2, 3 under the 'no-stress' and 'stress' conditions
 </div>
 
 
@@ -445,7 +441,7 @@ white boxes represent processing steps.
     color: #999;
     padding: 2px;" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
-<p> Figure 7. Flow diagram of general methodology used for CAN-Bus based analysis</p>
+ Figure 7. Flow diagram of general methodology used for CAN-Bus based analysis
 </div>
 
 
@@ -454,102 +450,111 @@ white boxes represent processing steps.
 
 <h3 id="Stress-Detection-Using-Physiological-Sensors-10"><a href="#Stress-Detection-Using-Physiological-Sensors-10" class="headerlink" title="Stress Detection Using Physiological Sensors 10"></a>Stress Detection Using Physiological Sensors <a href="#refer-anchor-10"><sup>10</sup></a></h3><h4 id="1-Data-Collection"><a href="#1-Data-Collection" class="headerlink" title="1.  Data Collection"></a>1.  Data Collection</h4><ul>
 <li>Electrocardiogram, electromyogram, skin conductance, and respiration were recorded continuously while drivers followed a set route through open roads in the greater Boston area.</li>
-<li>Four types of physiological sensors were used during the experiment: electrocardiogram (EKG); electromyogram (EMG);<br>skin conductivity (also known as EDA, electrodermal activation, and galvanic skin response); and respiration (through chest cavity expansion)<center>
-<img src="https://ftp.bmp.ovh/imgs/2020/06/2706edca5c1c7f15.png" width="70%" height="70%" div align="center"> 
-
-</li>
+<li>Four types of physiological sensors were used during the experiment: electrocardiogram (EKG); electromyogram (EMG);<br>skin conductivity (also known as EDA, electrodermal activation, and galvanic skin response); and respiration (through chest cavity expansion)<br><center><br><img src="https://ftp.bmp.ovh/imgs/2020/06/2706edca5c1c7f15.png" width="70%" height="70%" div align="center"> </li>
 </ul>
 <div style="color:orange;
     display: inline-block;
     color: #999;
     padding: 2px;" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
-<p> Figure 8. Five physiological sensors</p>
+ Figure 8. Five physiological sensors
 </div>
 </center>
 
-<h4 id="2-Data-Analysis"><a href="#2-Data-Analysis" class="headerlink" title="2.  Data Analysis"></a>2.  Data Analysis</h4><ul>
-<li><p>Analysis I ：Recognizing General Stress Levels</p>
-<p>  Used 5-min intervals of data from welldefined segments of the drive, where drivers experienced  low-, medium-, and high-stress situations to train an automatic recognition algorithm.</p>
-</li>
-<li><p>Analysis II：Continuous Correlations</p>
-<p>  Investigated how continuous physiological features, calculated at 1-s intervals throughout the entire drive, correlated with a metric of driver stress derived from videotape records.</p>
-</li>
-</ul>
-<h4 id="3-Conclusion"><a href="#3-Conclusion" class="headerlink" title="3.  Conclusion"></a>3.  Conclusion</h4><p>The results showed that three stress levels could be recognized with an overall accuracy of 97.4% using 5-min intervals of data and that heart rate and skin conductivity metrics provided the highest overall correlations with continuous driver stress levels.</p>
-<h3 id="Stress-Detection-Using-Non-contact-Remote-Photoplethysmography-From-Video-Stream-11"><a href="#Stress-Detection-Using-Non-contact-Remote-Photoplethysmography-From-Video-Stream-11" class="headerlink" title="Stress Detection Using Non-contact Remote Photoplethysmography From Video Stream 11"></a>Stress Detection Using Non-contact Remote Photoplethysmography From Video Stream <a href="#refer-anchor-11"><sup>11</sup></a></h3><h4 id="1-Technologys"><a href="#1-Technologys" class="headerlink" title="1. Technologys"></a>1. Technologys</h4><p>Using rPPG technology which is based on the one-pixel<br>camera mathematical model and has the following modules structure:</p>
-<ul>
-<li>Face detection module</li>
-<li>Images spatial filtering module</li>
-<li>Module for skin tints time series frequencies filtration</li>
-<li>Heart beats’ time detection module</li>
-</ul>
-<h3 id="Stress-Detection-Using-Using-Psychophysiological-Signals12"><a href="#Stress-Detection-Using-Using-Psychophysiological-Signals12" class="headerlink" title="Stress Detection Using Using Psychophysiological Signals12"></a>Stress Detection Using Using Psychophysiological Signals<a href="#refer-anchor-12"><sup>12</sup></a></h3><h4 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h4><ul>
-<li><p>This research attempts to visualize and evaluate the emotional state identified with ‘stress’ of the computer users, through several physiological signals </p>
-<ul>
-<li><p>Blood Volume Pulse (BVP)</p>
-</li>
-<li><p>Galvanic Skin Response (GSR)</p>
-</li>
-<li><p>Pupil Diameter (PD)</p>
-<p>that can be measured non-invasively and non-intrusively.</p>
-</li>
-</ul>
-</li>
-<li><p>After all the features were generated, they were provided to a learning system, to differentiate the stress state (incongruent Stroop segments) from the normal state (congruent Stroop segments) of a person working on a computer task. In particular, this project employed a Support Vector Machine (SVM) for this learning and classification process.</p>
+#### 2.  Data Analysis
+- Analysis I ：Recognizing General Stress Levels
+
+    Used 5-min intervals of data from welldefined segments of the drive, where drivers experienced  low-, medium-, and high-stress situations to train an automatic recognition algorithm.
+- Analysis II：Continuous Correlations
+
+    Investigated how continuous physiological features, calculated at 1-s intervals throughout the entire drive, correlated with a metric of driver stress derived from videotape records.
+
+#### 3.  Conclusion
+
+The results showed that three stress levels could be recognized with an overall accuracy of 97.4% using 5-min intervals of data and that heart rate and skin conductivity metrics provided the highest overall correlations with continuous driver stress levels.
+
+
+### Stress Detection Using Non-contact Remote Photoplethysmography From Video Stream [<sup>11</sup>](#refer-anchor-11)
+
+
+#### 1. Technologys 
+Using rPPG technology which is based on the one-pixel
+camera mathematical model and has the following modules structure:
+- Face detection module
+- Images spatial filtering module
+- Module for skin tints time series frequencies filtration
+- Heart beats’ time detection module
+
+
+
+ ### Stress Detection Using Using Psychophysiological Signals[<sup>12</sup>](#refer-anchor-12)
+
+#### 1. Introduction
+- This research attempts to visualize and evaluate the emotional state identified with ‘stress’ of the computer users, through several physiological signals 
+    - Blood Volume Pulse (BVP)
+    - Galvanic Skin Response (GSR)
+    - Pupil Diameter (PD)
+
+    that can be measured non-invasively and non-intrusively.
+- After all the features were generated, they were provided to a learning system, to differentiate the stress state (incongruent Stroop segments) from the normal state (congruent Stroop segments) of a person working on a computer task. In particular, this project employed a Support Vector Machine (SVM) for this learning and classification process.
 <center>
 <img src="https://ftp.bmp.ovh/imgs/2020/06/2705c7029c453a48.png" width="70%" height="70%" div align="center"> 
 
-</li>
-</ul>
 <div style="color:orange;
     display: inline-block;
     color: #999;
     padding: 2px;" type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 
-<p> Figure 9. Physiological features extracted</p>
+ Figure 9. Physiological features extracted
 </div>
 </center>
 
-<ul>
-<li>Support Vector Machines (SVMs) are the computational machine leaning systems that use a hypothesis space of linear functions in a high dimensional feature space to perform supervised classification.</li>
-</ul>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><div id="refer-anchor-1"></div>
+- Support Vector Machines (SVMs) are the computational machine leaning systems that use a hypothesis space of linear functions in a high dimensional feature space to perform supervised classification.
 
-<p>[1] <a href="https://academic.microsoft.com/paper/2982196965/reference/search?q=RhythmNet%3A%20End-to-End%20Heart%20Rate%20Estimation%20From%20Face%20via%20Spatial-Temporal%20Representation&qe=Or(Id%253D2194775991%252CId%253D1522301498%252CId%253D2950635152%252CId%253D2963524571%252CId%253D1984554603%252CId%253D2003922338%252CId%253D2008821584%252CId%253D1998391547%252CId%253D2069692225%252CId%253D2122098299%252CId%253D1984026713%252CId%253D1986273245%252CId%253D2010270685%252CId%253D2029745771%252CId%253D2520509592%252CId%253D2128585298%252CId%253D1528784850%252CId%253D2472200183%252CId%253D2044935899%252CId%253D2424269919%252CId%253D2060667206%252CId%253D2963433879%252CId%253D2218803975%252CId%253D2002282659%252CId%253D2798868324%252CId%253D2820458630%252CId%253D2128721925%252CId%253D2520824413%252CId%253D2100260443%252CId%253D2894553678%252CId%253D2896102525%252CId%253D2577714982%252CId%253D2731384148%252CId%253D2729002305%252CId%253D2786529723%252CId%253D2000638024%252CId%253D2805424946%252CId%253D2016778993%252CId%253D2591117648%252CId%253D2548034104%252CId%253D3021508980%252CId%253D2787182113)&f=&orderBy=0" target="_blank" rel="noopener">Niu X, Shan S, Han H, et al. RhythmNet: End-to-end Heart Rate Estimation from Face via Spatial-temporal Representation[J]. IEEE Transactions on Image Processing, 2019.</a></p>
+
+
+
+
+
+
+## References
+
+<div id="refer-anchor-1"></div>
+
+<p>[1] <a href="https://academic.microsoft.com/paper/2982196965/reference/search?q=RhythmNet%3A%20End-to-End%20Heart%20Rate%20Estimation%20From%20Face%20via%20Spatial-Temporal%20Representation&amp;qe=Or(Id%253D2194775991%252CId%253D1522301498%252CId%253D2950635152%252CId%253D2963524571%252CId%253D1984554603%252CId%253D2003922338%252CId%253D2008821584%252CId%253D1998391547%252CId%253D2069692225%252CId%253D2122098299%252CId%253D1984026713%252CId%253D1986273245%252CId%253D2010270685%252CId%253D2029745771%252CId%253D2520509592%252CId%253D2128585298%252CId%253D1528784850%252CId%253D2472200183%252CId%253D2044935899%252CId%253D2424269919%252CId%253D2060667206%252CId%253D2963433879%252CId%253D2218803975%252CId%253D2002282659%252CId%253D2798868324%252CId%253D2820458630%252CId%253D2128721925%252CId%253D2520824413%252CId%253D2100260443%252CId%253D2894553678%252CId%253D2896102525%252CId%253D2577714982%252CId%253D2731384148%252CId%253D2729002305%252CId%253D2786529723%252CId%253D2000638024%252CId%253D2805424946%252CId%253D2016778993%252CId%253D2591117648%252CId%253D2548034104%252CId%253D3021508980%252CId%253D2787182113" target="_blank" rel="noopener">Niu X, Shan S, Han H, et al. RhythmNet: End-to-end Heart Rate Estimation from Face via Spatial-temporal Representation[J]. IEEE Transactions on Image Processing, 2019.</a>&amp;f=&amp;orderBy=0)</p>
 <div id="refer-anchor-2"></div>
 
-<p>[2] <a href="https://academic.microsoft.com/paper/2786529723/reference/search?q=Continuous%20heart%20rate%20measurement%20from%20face%3A%20A%20robust%20rPPG%20approach%20with%20distribution%20learning&qe=Or(Id%253D2164598857%252CId%253D2015795623%252CId%253D1984554603%252CId%253D2003922338%252CId%253D2008821584%252CId%253D1998391547%252CId%253D2069692225%252CId%253D2122098299%252CId%253D1984026713%252CId%253D2166694921%252CId%253D1986273245%252CId%253D2029745771%252CId%253D2115394472%252CId%253D2621511044%252CId%253D2128585298%252CId%253D1528784850%252CId%253D2063643424%252CId%253D2472200183%252CId%253D2097915737%252CId%253D2218803975%252CId%253D34163073%252CId%253D2245133670%252CId%253D2731384148%252CId%253D2294700151%252CId%253D1549460003)&f=&orderBy=0" target="_blank" rel="noopener">Niu X, Han H, Shan S, et al. Continuous heart rate measurement from face: A robust rppg approach with distribution learning[C]//2017 IEEE International Joint Conference on Biometrics (IJCB). IEEE, 2017: 642-650.</a></p>
+<p>[2] <a href="https://academic.microsoft.com/paper/2786529723/reference/search?q=Continuous%20heart%20rate%20measurement%20from%20face%3A%20A%20robust%20rPPG%20approach%20with%20distribution%20learning&amp;qe=Or(Id%253D2164598857%252CId%253D2015795623%252CId%253D1984554603%252CId%253D2003922338%252CId%253D2008821584%252CId%253D1998391547%252CId%253D2069692225%252CId%253D2122098299%252CId%253D1984026713%252CId%253D2166694921%252CId%253D1986273245%252CId%253D2029745771%252CId%253D2115394472%252CId%253D2621511044%252CId%253D2128585298%252CId%253D1528784850%252CId%253D2063643424%252CId%253D2472200183%252CId%253D2097915737%252CId%253D2218803975%252CId%253D34163073%252CId%253D2245133670%252CId%253D2731384148%252CId%253D2294700151%252CId%253D1549460003" target="_blank" rel="noopener">Niu X, Han H, Shan S, et al. Continuous heart rate measurement from face: A robust rppg approach with distribution learning[C]//2017 IEEE International Joint Conference on Biometrics (IJCB). IEEE, 2017: 642-650.</a>&amp;f=&amp;orderBy=0)</p>
 <div id="refer-anchor-3"></div>
 
 <p>[3] <a href="https://pdfs.semanticscholar.org/92bc/546258e9b6560cea225ca9f6745fa636ae6a.pdf?_ga=2.258947146.1716592545.1590961852-700154357.1590961852" target="_blank" rel="noopener">Poole A, Ball L J. Encyclopedia of Human Computer Interaction, chapter Eye Tracking in Human-Computer Interaction and Usability Research: Current Status and Future Prospects[J]. Information Science Reference, 2006.</a></p>
 <div id="refer-anchor-4"></div>
 
-<p>[4] <a href="https://academic.microsoft.com/paper/2409999048/reference/search?q=Pupil%20detection%20for%20head-mounted%20eye%20tracking%20in%20the%20wild%3A%20an%20evaluation%20of%20the%20state%20of%20the%20art&qe=Or(Id%253D2164598857%252CId%253D2126698740%252CId%253D1986291329%252CId%253D2107956149%252CId%253D2043033468%252CId%253D2017617273%252CId%253D1765423497%252CId%253D2087862817%252CId%253D2169489294%252CId%253D2065429801%252CId%253D2256808982%252CId%253D1981934656%252CId%253D2045896124%252CId%253D2177921452%252CId%253D2090234410%252CId%253D2067023690%252CId%253D2272545788%252CId%253D2072684935%252CId%253D2204300335%252CId%253D1945120929%252CId%253D2168563234%252CId%253D2137022750%252CId%253D2131548897%252CId%253D1948505640%252CId%253D2031541326%252CId%253D2213899959%252CId%253D159360584%252CId%253D2112351660%252CId%253D2049168174%252CId%253D1982150302%252CId%253D2008997129%252CId%253D2029934013%252CId%253D180315998%252CId%253D2063144092%252CId%253D2063519295%252CId%253D2044402784%252CId%253D2337807097)&f=&orderBy=0" target="_blank" rel="noopener">Fuhl, Wolfgang, et al. “Pupil Detection for Head-Mounted Eye Tracking in the Wild: An Evaluation of the State of the Art.” Machine Vision Applications, vol. 27, no. 8, 2016, pp. 1275–1288.</a></p>
+<p>[4] <a href="https://academic.microsoft.com/paper/2409999048/reference/search?q=Pupil%20detection%20for%20head-mounted%20eye%20tracking%20in%20the%20wild%3A%20an%20evaluation%20of%20the%20state%20of%20the%20art&amp;qe=Or(Id%253D2164598857%252CId%253D2126698740%252CId%253D1986291329%252CId%253D2107956149%252CId%253D2043033468%252CId%253D2017617273%252CId%253D1765423497%252CId%253D2087862817%252CId%253D2169489294%252CId%253D2065429801%252CId%253D2256808982%252CId%253D1981934656%252CId%253D2045896124%252CId%253D2177921452%252CId%253D2090234410%252CId%253D2067023690%252CId%253D2272545788%252CId%253D2072684935%252CId%253D2204300335%252CId%253D1945120929%252CId%253D2168563234%252CId%253D2137022750%252CId%253D2131548897%252CId%253D1948505640%252CId%253D2031541326%252CId%253D2213899959%252CId%253D159360584%252CId%253D2112351660%252CId%253D2049168174%252CId%253D1982150302%252CId%253D2008997129%252CId%253D2029934013%252CId%253D180315998%252CId%253D2063144092%252CId%253D2063519295%252CId%253D2044402784%252CId%253D2337807097" target="_blank" rel="noopener">Fuhl, Wolfgang, et al. “Pupil Detection for Head-Mounted Eye Tracking in the Wild: An Evaluation of the State of the Art.” Machine Vision Applications, vol. 27, no. 8, 2016, pp. 1275–1288.</a>&amp;f=&amp;orderBy=0)</p>
 <div id="refer-anchor-5"></div>
 
-<p>[5] <a href="https://academic.microsoft.com/paper/2177921452/reference/search?q=ElSe%3A%20ellipse%20selection%20for%20robust%20pupil%20detection%20in%20real-world%20environments&qe=Or(Id%253D2002647384%252CId%253D2107956149%252CId%253D2043033468%252CId%253D2017617273%252CId%253D2256808982%252CId%253D2045896124%252CId%253D2090234410%252CId%253D2017522196%252CId%253D2052547643%252CId%253D2168563234%252CId%253D2131548897%252CId%253D1948505640%252CId%253D2031541326%252CId%253D2112351660%252CId%253D1982150302%252CId%253D2008997129%252CId%253D180315998%252CId%253D2063144092%252CId%253D2063519295%252CId%253D2044402784%252CId%253D2337807097)&f=&orderBy=0" target="_blank" rel="noopener">Fuhl W, Santini T C, Kübler T, et al. Else: Ellipse selection for robust pupil detection in real-world environments[C]//Proceedings of the Ninth Biennial ACM Symposium on Eye Tracking Research &amp; Applications. 2016: 123-130</a></p>
+<p>[5] <a href="https://academic.microsoft.com/paper/2177921452/reference/search?q=ElSe%3A%20ellipse%20selection%20for%20robust%20pupil%20detection%20in%20real-world%20environments&amp;qe=Or(Id%253D2002647384%252CId%253D2107956149%252CId%253D2043033468%252CId%253D2017617273%252CId%253D2256808982%252CId%253D2045896124%252CId%253D2090234410%252CId%253D2017522196%252CId%253D2052547643%252CId%253D2168563234%252CId%253D2131548897%252CId%253D1948505640%252CId%253D2031541326%252CId%253D2112351660%252CId%253D1982150302%252CId%253D2008997129%252CId%253D180315998%252CId%253D2063144092%252CId%253D2063519295%252CId%253D2044402784%252CId%253D2337807097" target="_blank" rel="noopener">Fuhl W, Santini T C, Kübler T, et al. Else: Ellipse selection for robust pupil detection in real-world environments[C]//Proceedings of the Ninth Biennial ACM Symposium on Eye Tracking Research &amp; Applications. 2016: 123-130</a>&amp;f=&amp;orderBy=0)</p>
 <div id="refer-anchor-6"></div>
 
-<p>[6] <a href="https://academic.microsoft.com/paper/1783197491/reference/search?q=Recognizing%20Emotions%20in%20Human%20Computer%20Interaction%3A%20Studying%20Stress%20Using%20Skin%20Conductance&qe=Or(Id%253D2002055708%252CId%253D3022307797%252CId%253D2171801645%252CId%253D65833265%252CId%253D2086956503%252CId%253D2126707560%252CId%253D2134033472%252CId%253D2103223087%252CId%253D2049276185%252CId%253D2054560711%252CId%253D2167801237%252CId%253D1542007717%252CId%253D2095762024%252CId%253D2045221722%252CId%253D172919391)&f=&orderBy=0" target="_blank" rel="noopener">Liapis, Alexandros, et al. “Recognizing emotions in human computer interaction: Studying stress using skin conductance.” IFIP Conference on Human-Computer Interaction. Springer, Cham, 2015.</a></p>
+<p>[6] <a href="https://academic.microsoft.com/paper/1783197491/reference/search?q=Recognizing%20Emotions%20in%20Human%20Computer%20Interaction%3A%20Studying%20Stress%20Using%20Skin%20Conductance&amp;qe=Or(Id%253D2002055708%252CId%253D3022307797%252CId%253D2171801645%252CId%253D65833265%252CId%253D2086956503%252CId%253D2126707560%252CId%253D2134033472%252CId%253D2103223087%252CId%253D2049276185%252CId%253D2054560711%252CId%253D2167801237%252CId%253D1542007717%252CId%253D2095762024%252CId%253D2045221722%252CId%253D172919391" target="_blank" rel="noopener">Liapis, Alexandros, et al. “Recognizing emotions in human computer interaction: Studying stress using skin conductance.” IFIP Conference on Human-Computer Interaction. Springer, Cham, 2015.</a>&amp;f=&amp;orderBy=0)</p>
 <div id="refer-anchor-7"></div>
 
-<p>[7] <a href="https://academic.microsoft.com/paper/2171801645/reference/search?q=Detecting%20stress%20during%20real-world%20driving%20tasks%20using%20physiological%20sensors&qe=Or(Id%253D2285072859%252CId%253D3017143921%252CId%253D2120945046%252CId%253D2097431774%252CId%253D1518433044%252CId%253D2063705912%252CId%253D2159306398%252CId%253D1974618482%252CId%253D2140884902%252CId%253D2053504627%252CId%253D91051382%252CId%253D2066385839%252CId%253D601685510%252CId%253D3003446696%252CId%253D2151756953%252CId%253D193701156%252CId%253D2029682484%252CId%253D193665387%252CId%253D2048888181%252CId%253D2132628868%252CId%253D2209136040%252CId%253D2064503844%252CId%253D2067666612%252CId%253D647280292%252CId%253D1542278607%252CId%253D849774135%252CId%253D85932174%252CId%253D2086516619%252CId%253D137170526%252CId%253D2970915638%252CId%253D2080536330)&f=&orderBy=0" target="_blank" rel="noopener">Healey, J.A., Picard, R.W.: Detecting stress during real-world driving tasks using physio-logical sensors. IEEE Trans. Intell. Transp. Syst. 6, 156–166 (2005). </a></p>
+<p>[7] <a href="https://academic.microsoft.com/paper/2171801645/reference/search?q=Detecting%20stress%20during%20real-world%20driving%20tasks%20using%20physiological%20sensors&amp;qe=Or(Id%253D2285072859%252CId%253D3017143921%252CId%253D2120945046%252CId%253D2097431774%252CId%253D1518433044%252CId%253D2063705912%252CId%253D2159306398%252CId%253D1974618482%252CId%253D2140884902%252CId%253D2053504627%252CId%253D91051382%252CId%253D2066385839%252CId%253D601685510%252CId%253D3003446696%252CId%253D2151756953%252CId%253D193701156%252CId%253D2029682484%252CId%253D193665387%252CId%253D2048888181%252CId%253D2132628868%252CId%253D2209136040%252CId%253D2064503844%252CId%253D2067666612%252CId%253D647280292%252CId%253D1542278607%252CId%253D849774135%252CId%253D85932174%252CId%253D2086516619%252CId%253D137170526%252CId%253D2970915638%252CId%253D2080536330" target="_blank" rel="noopener">Healey, J.A., Picard, R.W.: Detecting stress during real-world driving tasks using physio-logical sensors. IEEE Trans. Intell. Transp. Syst. 6, 156–166 (2005). </a>&amp;f=&amp;orderBy=0)</p>
 <div id="refer-anchor-8"></div>
 
-<p>[8] <a href="https://academic.microsoft.com/paper/2209258291/reference/search?q=The%20Effect%20of%20Stress%20on%20Cognitive%20Load%20Measurement&qe=Or(Id%253D2091413411%252CId%253D2137576942%252CId%253D2059303722%252CId%253D2025961724%252CId%253D2113555622%252CId%253D1537988608%252CId%253D2142567154%252CId%253D2063705912%252CId%253D1978941942%252CId%253D1867115258%252CId%253D2097767394%252CId%253D1990715088%252CId%253D2985946%252CId%253D2023481578%252CId%253D2090628816%252CId%253D114311044%252CId%253D75721161%252CId%253D2027976084%252CId%253D2077185025)&f=&orderBy=0" target="_blank" rel="noopener">Conway D, Dick I, Li Z, et al. The effect of stress on cognitive load measurement[C]//IFIP Conference on Human-Computer Interaction. Springer, Berlin, Heidelberg, 2013: 659-666.</a></p>
+<p>[8] <a href="https://academic.microsoft.com/paper/2209258291/reference/search?q=The%20Effect%20of%20Stress%20on%20Cognitive%20Load%20Measurement&amp;qe=Or(Id%253D2091413411%252CId%253D2137576942%252CId%253D2059303722%252CId%253D2025961724%252CId%253D2113555622%252CId%253D1537988608%252CId%253D2142567154%252CId%253D2063705912%252CId%253D1978941942%252CId%253D1867115258%252CId%253D2097767394%252CId%253D1990715088%252CId%253D2985946%252CId%253D2023481578%252CId%253D2090628816%252CId%253D114311044%252CId%253D75721161%252CId%253D2027976084%252CId%253D2077185025" target="_blank" rel="noopener">Conway D, Dick I, Li Z, et al. The effect of stress on cognitive load measurement[C]//IFIP Conference on Human-Computer Interaction. Springer, Berlin, Heidelberg, 2013: 659-666.</a>&amp;f=&amp;orderBy=0)</p>
 <div id="refer-anchor-9"></div>
 
-<p>[9] <a href="https://www.researchgate.net/publication/253931940_Towards_Multi-Modal_Driver' target="_blank" rel="noopener"s_Stress_Detection">Boyraz, Pinar &amp; Hansen, John. (2012). Towards Multi-Modal Driver’s Stress Detection. Digital Signal Processing for In-Vehicle Systems and Safety. 10.1007/978-1-4419-9607-7_1. </a></p>
+<p>[9] <a href="https://www.researchgate.net/publication/253931940_Towards_Multi-Modal_Driver&#39;s_Stress_Detection" target="_blank" rel="noopener">Boyraz, Pinar &amp; Hansen, John. (2012). Towards Multi-Modal Driver’s Stress Detection. Digital Signal Processing for In-Vehicle Systems and Safety. 10.1007/978-1-4419-9607-7_1. </a></p>
 <div id="refer-anchor-10"></div>
 
-<p>[10] <a href="https://academic.microsoft.com/paper/2171801645/reference/search?q=Detecting%20stress%20during%20real-world%20driving%20tasks%20using%20physiological%20sensors&qe=Or(Id%253D2285072859%252CId%253D3017143921%252CId%253D2120945046%252CId%253D2097431774%252CId%253D1518433044%252CId%253D2063705912%252CId%253D2159306398%252CId%253D1974618482%252CId%253D2140884902%252CId%253D2053504627%252CId%253D91051382%252CId%253D2066385839%252CId%253D601685510%252CId%253D3003446696%252CId%253D2151756953%252CId%253D193701156%252CId%253D2029682484%252CId%253D193665387%252CId%253D2048888181%252CId%253D2132628868%252CId%253D2209136040%252CId%253D2064503844%252CId%253D2067666612%252CId%253D647280292%252CId%253D1542278607%252CId%253D849774135%252CId%253D85932174%252CId%253D2086516619%252CId%253D137170526%252CId%253D2970915638%252CId%253D2080536330)&f=&orderBy=0" target="_blank" rel="noopener">Healey J A, Picard R W. Detecting stress during real-world driving tasks using physiological sensors[J]. IEEE Transactions on intelligent transportation systems, 2005, 6(2): 156-166.</a></p>
+<p>[10] <a href="https://academic.microsoft.com/paper/2171801645/reference/search?q=Detecting%20stress%20during%20real-world%20driving%20tasks%20using%20physiological%20sensors&amp;qe=Or(Id%253D2285072859%252CId%253D3017143921%252CId%253D2120945046%252CId%253D2097431774%252CId%253D1518433044%252CId%253D2063705912%252CId%253D2159306398%252CId%253D1974618482%252CId%253D2140884902%252CId%253D2053504627%252CId%253D91051382%252CId%253D2066385839%252CId%253D601685510%252CId%253D3003446696%252CId%253D2151756953%252CId%253D193701156%252CId%253D2029682484%252CId%253D193665387%252CId%253D2048888181%252CId%253D2132628868%252CId%253D2209136040%252CId%253D2064503844%252CId%253D2067666612%252CId%253D647280292%252CId%253D1542278607%252CId%253D849774135%252CId%253D85932174%252CId%253D2086516619%252CId%253D137170526%252CId%253D2970915638%252CId%253D2080536330" target="_blank" rel="noopener">Healey J A, Picard R W. Detecting stress during real-world driving tasks using physiological sensors[J]. IEEE Transactions on intelligent transportation systems, 2005, 6(2): 156-166.</a>&amp;f=&amp;orderBy=0)</p>
 <div id="refer-anchor-11"></div>
 
-<p>[11] <a href="https://www.researchgate.net/profile/Yashbir_Singh3/publication/326009482_6th_International_Symposium_CompIMAGE' target="_blank" rel="noopener"18_-_Computational_Modeling_of_Objects_Presented_in_Images_Fundamentals_Methods_and_Applications/links/5b3342e6aca2720785e996b0/6th-International-Symposium-CompIMAGE18-Computational-Modeling-of-Objects-Presented-in-Images-Fundamentals-Methods-and-Applications.pdf#page=123">Tymoshenko, Y., Human stress detection using non-contact remote photoplethysmography from video stream. Contemporary Computational Science, p.125.</a></p>
+<p>[11] <a href="https://www.researchgate.net/profile/Yashbir_Singh3/publication/326009482_6th_International_Symposium_CompIMAGE&#39;18_-_Computational_Modeling_of_Objects_Presented_in_Images_Fundamentals_Methods_and_Applications/links/5b3342e6aca2720785e996b0/6th-International-Symposium-CompIMAGE18-Computational-Modeling-of-Objects-Presented-in-Images-Fundamentals-Methods-and-Applications.pdf#page=123" target="_blank" rel="noopener">Tymoshenko, Y., Human stress detection using non-contact remote photoplethysmography from video stream. Contemporary Computational Science, p.125.</a></p>
 <div id="refer-anchor-12"></div>
 
-<p>[12] <a href="https://academic.microsoft.com/paper/2162432365/reference/search?q=Realization%20of%20stress%20detection%20using%20psychophysiological%20signals%20for%20improvement%20of%20human-computer%20interactions&qe=Or(Id%253D2102865756%252CId%253D2139212933%252CId%253D2149684865%252CId%253D3021469268%252CId%253D2133589238%252CId%253D2124351082%252CId%253D1576520375%252CId%253D2120357670%252CId%253D2055522016%252CId%253D1486089539%252CId%253D2027151471%252CId%253D2042324951%252CId%253D2109831613%252CId%253D2014658719%252CId%253D1612190970%252CId%253D2058649375%252CId%253D2095520045%252CId%253D634413587)&f=&orderBy=0" target="_blank" rel="noopener">Zhai J, Barreto A B, Chin C, et al. Realization of stress detection using psychophysiological signals for improvement of human-computer interactions[C]//Proceedings. IEEE SoutheastCon, 2005. IEEE, 2005: 415-420.</a></p>
+<p>[12] <a href="https://academic.microsoft.com/paper/2162432365/reference/search?q=Realization%20of%20stress%20detection%20using%20psychophysiological%20signals%20for%20improvement%20of%20human-computer%20interactions&amp;qe=Or(Id%253D2102865756%252CId%253D2139212933%252CId%253D2149684865%252CId%253D3021469268%252CId%253D2133589238%252CId%253D2124351082%252CId%253D1576520375%252CId%253D2120357670%252CId%253D2055522016%252CId%253D1486089539%252CId%253D2027151471%252CId%253D2042324951%252CId%253D2109831613%252CId%253D2014658719%252CId%253D1612190970%252CId%253D2058649375%252CId%253D2095520045%252CId%253D634413587" target="_blank" rel="noopener">Zhai J, Barreto A B, Chin C, et al. Realization of stress detection using psychophysiological signals for improvement of human-computer interactions[C]//Proceedings. IEEE SoutheastCon, 2005. IEEE, 2005: 415-420.</a>&amp;f=&amp;orderBy=0)</p>
 
         
       </div>
@@ -654,7 +659,7 @@ white boxes represent processing steps.
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Heart-Rate1"><span class="nav-number">1.</span> <span class="nav-text">Heart Rate1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Traditional-HR-measurements"><span class="nav-number">1.1.</span> <span class="nav-text">1. Traditional HR measurements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Recently-remote-HR-estimation-from-face-videos-allows-HR-estimation-from-the-skin-i-e-the-face-area"><span class="nav-number">1.2.</span> <span class="nav-text">2. Recently, remote HR estimation from face videos, allows HR estimation from the skin. i.e. the face area</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Drawback"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Drawback</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-Existing-video-based-HR-estimation-methods"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 Existing video-based HR estimation methods</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-Remote-photoplethysmography-rPPG-based-approaches"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.2.1 Remote photoplethysmography( rPPG) based approaches</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-Improved-Remote-photoplethysmography-rPPG-based-approaches-2"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2.2 Improved Remote photoplethysmography( rPPG) based approaches 2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-3-Ballistocardiograph-BCG-based-approaches"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.2.3 Ballistocardiograph(BCG) based approaches.</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eye-Tracking3"><span class="nav-number">2.</span> <span class="nav-text">Eye Tracking3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Traditional-methods"><span class="nav-number">2.1.</span> <span class="nav-text">1. Traditional methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Most-commercial-eye-tracking-systems-available-today-“corneal-reflection-pupil-centre”-method-Goldberg-amp-Wichansky-2003"><span class="nav-number">2.2.</span> <span class="nav-text">2. Most commercial eye-tracking systems available today - “corneal-reflection&#x2F;pupil-centre” method (Goldberg &amp; Wichansky, 2003).</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Procedures"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1. Procedures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Pupil-detection-based-eye-tracking4"><span class="nav-number">2.2.2.</span> <span class="nav-text">3. Pupil detection based eye tracking4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-Six-state-of-art-pupil-detection-methods"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">3.1  Six state-of-art pupil detection methods</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-Introduction"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">3.2  Introduction</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-EISe-5"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">3.3  EISe 5</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skin-Conductance-Galavic-Skin-Response-or-Electro-Dermal-Response"><span class="nav-number">3.</span> <span class="nav-text">Skin Conductance(Galavic Skin Response or Electro Dermal Response)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Studying-stress-using-Skin-Conductance-6"><span class="nav-number">3.1.</span> <span class="nav-text">Studying stress using Skin Conductance 6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Basic-Introduction"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. Basic Introduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Setting-and-Equipment"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. Setting and Equipment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Analysis-and-Results"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. Analysis and Results</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cognitive-Load-Measurement-using-Skin-Conductance-8"><span class="nav-number">3.2.</span> <span class="nav-text">Cognitive Load Measurement using Skin Conductance 8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Aim"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. Aim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Equipment"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. Equipment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Brief-procedure"><span class="nav-number">3.2.3.</span> <span class="nav-text">3. Brief procedure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Analysis"><span class="nav-number">3.2.4.</span> <span class="nav-text">4. Analysis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stress-Detection"><span class="nav-number">4.</span> <span class="nav-text">Stress Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Towards-Multi-Modal-Driver’s-Stress-Detection-9"><span class="nav-number">4.1.</span> <span class="nav-text">Towards Multi-Modal Driver’s Stress Detection 9</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Stress-Detection-Using-Speech-Signal"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.  Stress Detection Using Speech Signal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Stress-Detection-Using-CAN-Bus-Signals（mainly-steering-wheel-angle-and-speed）"><span class="nav-number">4.1.2.</span> <span class="nav-text">2.  Stress Detection Using CAN-Bus Signals（mainly steering wheel angle and speed）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stress-Detection-Using-Physiological-Sensors-10"><span class="nav-number">4.2.</span> <span class="nav-text">Stress Detection Using Physiological Sensors 10</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Data-Collection"><span class="nav-number">4.2.1.</span> <span class="nav-text">1.  Data Collection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Data-Analysis"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.  Data Analysis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Conclusion"><span class="nav-number">4.2.3.</span> <span class="nav-text">3.  Conclusion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stress-Detection-Using-Non-contact-Remote-Photoplethysmography-From-Video-Stream-11"><span class="nav-number">4.3.</span> <span class="nav-text">Stress Detection Using Non-contact Remote Photoplethysmography From Video Stream 11</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Technologys"><span class="nav-number">4.3.1.</span> <span class="nav-text">1. Technologys</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stress-Detection-Using-Using-Psychophysiological-Signals12"><span class="nav-number">4.4.</span> <span class="nav-text">Stress Detection Using Using Psychophysiological Signals12</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Introduction"><span class="nav-number">4.4.1.</span> <span class="nav-text">1. Introduction</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">5.</span> <span class="nav-text">References</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Heart-Rate1"><span class="nav-number">1.</span> <span class="nav-text">Heart Rate1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Traditional-HR-measurements"><span class="nav-number">1.1.</span> <span class="nav-text">1. Traditional HR measurements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Recently-remote-HR-estimation-from-face-videos-allows-HR-estimation-from-the-skin-i-e-the-face-area"><span class="nav-number">1.2.</span> <span class="nav-text">2. Recently, remote HR estimation from face videos, allows HR estimation from the skin. i.e. the face area</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Drawback"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Drawback</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-Existing-video-based-HR-estimation-methods"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 Existing video-based HR estimation methods</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-Remote-photoplethysmography-rPPG-based-approaches"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.2.1 Remote photoplethysmography( rPPG) based approaches</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-Improved-Remote-photoplethysmography-rPPG-based-approaches-2"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.2.2 Improved Remote photoplethysmography( rPPG) based approaches 2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-3-Ballistocardiograph-BCG-based-approaches"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.2.3 Ballistocardiograph(BCG) based approaches.</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eye-Tracking3"><span class="nav-number">2.</span> <span class="nav-text">Eye Tracking3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Traditional-methods"><span class="nav-number">2.1.</span> <span class="nav-text">1. Traditional methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Most-commercial-eye-tracking-systems-available-today-“corneal-reflection-pupil-centre”-method-Goldberg-amp-Wichansky-2003"><span class="nav-number">2.2.</span> <span class="nav-text">2. Most commercial eye-tracking systems available today - “corneal-reflection&#x2F;pupil-centre” method (Goldberg &amp; Wichansky, 2003).</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Procedures"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1. Procedures</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Pupil-detection-based-eye-tracking4"><span class="nav-number">2.2.2.</span> <span class="nav-text">3. Pupil detection based eye tracking4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-Six-state-of-art-pupil-detection-methods"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">3.1  Six state-of-art pupil detection methods</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-Introduction"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">3.2  Introduction</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-EISe-5"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">3.3  EISe 5</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skin-Conductance-Galavic-Skin-Response-or-Electro-Dermal-Response"><span class="nav-number">3.</span> <span class="nav-text">Skin Conductance(Galavic Skin Response or Electro Dermal Response)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Studying-stress-using-Skin-Conductance-6"><span class="nav-number">3.1.</span> <span class="nav-text">Studying stress using Skin Conductance 6</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Basic-Introduction"><span class="nav-number">3.1.1.</span> <span class="nav-text">1. Basic Introduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Setting-and-Equipment"><span class="nav-number">3.1.2.</span> <span class="nav-text">2. Setting and Equipment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Analysis-and-Results"><span class="nav-number">3.1.3.</span> <span class="nav-text">3. Analysis and Results</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cognitive-Load-Measurement-using-Skin-Conductance-8"><span class="nav-number">3.2.</span> <span class="nav-text">Cognitive Load Measurement using Skin Conductance 8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Aim"><span class="nav-number">3.2.1.</span> <span class="nav-text">1. Aim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Equipment"><span class="nav-number">3.2.2.</span> <span class="nav-text">2. Equipment</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Brief-procedure"><span class="nav-number">3.2.3.</span> <span class="nav-text">3. Brief procedure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Analysis"><span class="nav-number">3.2.4.</span> <span class="nav-text">4. Analysis</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stress-Detection"><span class="nav-number">4.</span> <span class="nav-text">Stress Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Towards-Multi-Modal-Driver’s-Stress-Detection-9"><span class="nav-number">4.1.</span> <span class="nav-text">Towards Multi-Modal Driver’s Stress Detection 9</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Stress-Detection-Using-Speech-Signal"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.  Stress Detection Using Speech Signal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Stress-Detection-Using-CAN-Bus-Signals（mainly-steering-wheel-angle-and-speed）"><span class="nav-number">4.1.2.</span> <span class="nav-text">2.  Stress Detection Using CAN-Bus Signals（mainly steering wheel angle and speed）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stress-Detection-Using-Physiological-Sensors-10"><span class="nav-number">4.2.</span> <span class="nav-text">Stress Detection Using Physiological Sensors 10</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Data-Collection"><span class="nav-number">4.2.1.</span> <span class="nav-text">1.  Data Collection</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -801,7 +806,24 @@ white boxes represent processing steps.
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -854,6 +876,8 @@ white boxes represent processing steps.
   
 
   
+  
+
 
   
 
