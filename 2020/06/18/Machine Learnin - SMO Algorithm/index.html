@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="What is SMOSequential Minimal Optimization (SMO) is one way to solve the SVM training problem that is more efficient than standard QP solvers. SMO uses heuristics to partition the training problem int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning - SMO Algorithm">
+<meta property="og:url" content="http://yoursite.com/2020/06/18/Machine%20Learnin%20-%20SMO%20Algorithm/index.html">
+<meta property="og:site_name" content="Yu&#39;s Blog">
+<meta property="og:description" content="What is SMOSequential Minimal Optimization (SMO) is one way to solve the SVM training problem that is more efficient than standard QP solvers. SMO uses heuristics to partition the training problem int">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200618233906616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200618232938926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200618233516729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-06-18T15:03:51.625Z">
+<meta property="article:modified_time" content="2020-06-18T15:43:27.663Z">
+<meta property="article:author" content="YU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200618233906616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/06/18/Machine Learnin - SMO Algorithm/"/>
+
+
+
+
+
+  <title>Machine Learning - SMO Algorithm | Yu's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">Machine Learning - SMO Algorithm</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h2 id="What-is-SMO"><a href="#What-is-SMO" class="headerlink" title="What is SMO"></a>What is SMO</h2><p>Sequential Minimal Optimization (SMO) is one way to solve the SVM training problem that is more efficient than standard QP solvers. SMO uses heuristics to partition the training problem into smaller problems that can be solved analytically. Whether or not it works well depends largely on the assumptions behind the heuristics (working set selection). Typically, it speeds up training by quite a bit.</p>
+<p>In 1996, John Platt released this algorithm for training SVM classifiers. The basic idea is to optimize only two variables in one iteration and fix the remaining variables. Intuitively speaking, it is to decompose a large optimization problem into several small optimization problems. These small optimization problems are often achievable.</p>
+<p>The goal of the SMO algorithm is to find a series of $\alpha$ and b. Once these $\alpha$ are found, it is easy to calculate the weight vector w and get the separated hyperplane</p>
+<p>The working principle of the SMO algorithm is: select two $\alpha$ for optimization in each cycle. Once a suitable pair of $\alpha$ is found, increase one and decrease the other. The so-called “appropriate” here means that the two $\alpha$ must meet the following two conditions:</p>
+<ul>
+<li>one of the conditions is that the two $\alpha$ must be outside the boundary of the interval, </li>
+<li>the second condition is that the two $\alpha$ have not entered the interval Treatment or not on the border.</li>
+</ul>
+<h2 id="Pseudo-Code-for-Simplified-SMO"><a href="#Pseudo-Code-for-Simplified-SMO" class="headerlink" title="Pseudo-Code for Simplified SMO"></a>Pseudo-Code for Simplified SMO</h2><p><img src="https://img-blog.csdnimg.cn/20200618233906616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="How-to-write-a-simplified-SMO-Algorithm"><a href="#How-to-write-a-simplified-SMO-Algorithm" class="headerlink" title="How to write a simplified SMO Algorithm"></a>How to write a simplified SMO Algorithm</h2><h3 id="1-Data-visualization"><a href="#1-Data-visualization" class="headerlink" title="1. Data visualization"></a>1. Data visualization</h3><p>We use a simple data set for testing, the data set download address: <a href="https://github.com/Jack-Cherish/Machine-Learning/blob/master/SVM/testSet.txt" target="_blank" rel="noopener">https://github.com/Jack-Cherish/Machine-Learning/blob/master/SVM/testSet.txt</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:UTF-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description: read data</span></span><br><span class="line"><span class="string">Parameters:</span></span><br><span class="line"><span class="string">    fileName - file name</span></span><br><span class="line"><span class="string">Returns:</span></span><br><span class="line"><span class="string">    dataMat - data matrix</span></span><br><span class="line"><span class="string">    labelMat - data label</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span></span><br><span class="line">   dataMat = []</span><br><span class="line">    labelMat = []</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():  <span class="comment"># Read data line by line, filter out spaces, etc.</span></span><br><span class="line">        lineArr = line.strip().split(<span class="string">'\t'</span>)</span><br><span class="line">        dataMat.append([float(lineArr[<span class="number">0</span>]), float(lineArr[<span class="number">1</span>])])  <span class="comment"># Add data</span></span><br><span class="line">        labelMat.append(float(lineArr[<span class="number">2</span>]))  <span class="comment"># Add label</span></span><br><span class="line">    <span class="keyword">return</span> dataMat, labelMat</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description: data visualization</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Parameters:</span></span><br><span class="line"><span class="string">    dataMat - data matrix</span></span><br><span class="line"><span class="string">    labelMat - data label</span></span><br><span class="line"><span class="string">Returns:</span></span><br><span class="line"><span class="string">    None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">showDataSet</span><span class="params">(dataMat, labelMat)</span>:</span></span><br><span class="line">    data_plus = []                            <span class="comment"># Positive sample</span></span><br><span class="line">    data_minus = []                           <span class="comment"># Negative sample</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dataMat)):</span><br><span class="line">        <span class="keyword">if</span> labelMat[i] &gt; <span class="number">0</span>:</span><br><span class="line">            data_plus.append(dataMat[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            data_minus.append(dataMat[i])</span><br><span class="line">    data_plus_np = np.array(data_plus)<span class="comment"># Convert to numpy matrix</span></span><br><span class="line">    data_minus_np =np.array(data_minus)<span class="comment">#Convert to numpy matrix</span></span><br><span class="line">    plt.scatter(np.transpose(data_plus_np)[<span class="number">0</span>], np.transpose(data_plus_np)[<span class="number">1</span>])   <span class="comment"># Positive scatter plot</span></span><br><span class="line">    plt.scatter(np.transpose(data_minus_np)[<span class="number">0</span>], np.transpose(data_minus_np)[<span class="number">1</span>]) <span class="comment"># Negative scatter plot</span></span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>Use the dataset we download</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dataMat, labelMat = loadDataSet(<span class="string">'testSet.txt'</span>)</span><br><span class="line">showDataSet(dataMat, labelMat)</span><br></pre></td></tr></table></figure>
+
+<p>We can get this scatter plot.</p>
+<p><img src="https://img-blog.csdnimg.cn/20200618232938926.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p> Obviously it is linearly separable. Now let us start to use a simplified version of the SMO algorithm to solve it.</p>
+<h3 id="2-The-main-part"><a href="#2-The-main-part" class="headerlink" title="2. The main part"></a>2. The main part</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description:Random choose alpha</span></span><br><span class="line"><span class="string">Parameters:</span></span><br><span class="line"><span class="string">    i - The index of alpha_i</span></span><br><span class="line"><span class="string">    m - alpha</span></span><br><span class="line"><span class="string">Returns:</span></span><br><span class="line"><span class="string">    j - The index of alpha_j</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selectJrand</span><span class="params">(i, m)</span>:</span></span><br><span class="line">    j = i  </span><br><span class="line">    <span class="keyword">while</span> (j == i):</span><br><span class="line">        j = int(random.uniform(<span class="number">0</span>, m))</span><br><span class="line">    <span class="keyword">return</span> j</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description:修剪alpha</span></span><br><span class="line"><span class="string">Parameters:</span></span><br><span class="line"><span class="string">    aj - The value of alpha_j</span></span><br><span class="line"><span class="string">    H - The upper bound of alpha</span></span><br><span class="line"><span class="string">    L - The lower bound of alpha</span></span><br><span class="line"><span class="string">Returns:</span></span><br><span class="line"><span class="string">    aj - the value of alpah</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clipAlpha</span><span class="params">(aj, H, L)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> aj &gt; H:</span><br><span class="line">        aj = H</span><br><span class="line">    <span class="keyword">if</span> L &gt; aj:</span><br><span class="line">        aj = L</span><br><span class="line">    <span class="keyword">return</span> aj</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description: Simplified SMO algorithm</span></span><br><span class="line"><span class="string">Parameters:</span></span><br><span class="line"><span class="string">    dataMatIn - data matrix</span></span><br><span class="line"><span class="string">    classLabels - data label</span></span><br><span class="line"><span class="string">    C - slack variable</span></span><br><span class="line"><span class="string">    toler - fault tolerance</span></span><br><span class="line"><span class="string">    maxIter - The maximum number of iterations</span></span><br><span class="line"><span class="string">Returns:</span></span><br><span class="line"><span class="string">    None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smoSimple</span><span class="params">(dataMatIn, classLabels, C, toler, maxIter)</span>:</span></span><br><span class="line">    <span class="comment"># Convert to numpy mat storage</span></span><br><span class="line">    dataMatrix = np.mat(dataMatIn);</span><br><span class="line">    labelMat = np.mat(classLabels).transpose()</span><br><span class="line">    <span class="comment"># Initialize b and count the dimensions of dataMatrix</span></span><br><span class="line">    b = <span class="number">0</span>;</span><br><span class="line">    m, n = np.shape(dataMatrix)</span><br><span class="line">    <span class="comment"># Initialize alpha to 0</span></span><br><span class="line">    alphas = np.mat(np.zeros((m, <span class="number">1</span>)))</span><br><span class="line">    <span class="comment"># Initial the number of iterations</span></span><br><span class="line">    iter_num = <span class="number">0</span></span><br><span class="line">    <span class="comment"># Iterate at most matIter times</span></span><br><span class="line">    <span class="keyword">while</span> (iter_num &lt; maxIter):</span><br><span class="line">        alphaPairsChanged = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            <span class="comment"># Step 1：Calculation error Ei</span></span><br><span class="line">            fXi = float(np.multiply(alphas, labelMat).T * (dataMatrix * dataMatrix[i, :].T)) + b</span><br><span class="line">            Ei = fXi - float(labelMat[i])</span><br><span class="line">            <span class="comment"># Optimize alpha and set a certain fault tolerance.</span></span><br><span class="line">            <span class="keyword">if</span> ((labelMat[i] * Ei &lt; -toler) <span class="keyword">and</span> (alphas[i] &lt; C)) <span class="keyword">or</span> ((labelMat[i] * Ei &gt; toler) <span class="keyword">and</span> (alphas[i] &gt; <span class="number">0</span>)):</span><br><span class="line">                <span class="comment"># Randomly choose alpha_j</span></span><br><span class="line">                j = selectJrand(i, m)</span><br><span class="line">                <span class="comment"># Step 1：Calculation error Ej</span></span><br><span class="line">                fXj = float(np.multiply(alphas, labelMat).T * (dataMatrix * dataMatrix[j, :].T)) + b</span><br><span class="line">                Ej = fXj - float(labelMat[j])</span><br><span class="line">                <span class="comment"># Save the aplpha value before update, use deep copy</span></span><br><span class="line">                alphaIold = alphas[i].copy();</span><br><span class="line">                alphaJold = alphas[j].copy();</span><br><span class="line">                <span class="comment"># Step 2：Calculate the upper and lower bounds L and H</span></span><br><span class="line">                <span class="keyword">if</span> (labelMat[i] != labelMat[j]):</span><br><span class="line">                    L = max(<span class="number">0</span>, alphas[j] - alphas[i])</span><br><span class="line">                    H = min(C, C + alphas[j] - alphas[i])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    L = max(<span class="number">0</span>, alphas[j] + alphas[i] - C)</span><br><span class="line">                    H = min(C, alphas[j] + alphas[i])</span><br><span class="line">                <span class="keyword">if</span> L == H: print(<span class="string">"L==H"</span>); <span class="keyword">continue</span></span><br><span class="line">                <span class="comment"># Step 3：Calculate eta</span></span><br><span class="line">                eta = <span class="number">2.0</span> * dataMatrix[i, :] * dataMatrix[j, :].T - dataMatrix[i, :] * dataMatrix[i, :].T </span><br><span class="line">                            - dataMatrix[j,:] * dataMatrix[j, :].T</span><br><span class="line">                <span class="keyword">if</span> eta &gt;= <span class="number">0</span>: print(<span class="string">"eta&gt;=0"</span>); <span class="keyword">continue</span></span><br><span class="line">                <span class="comment"># Step 4：Update alpha_j</span></span><br><span class="line">                alphas[j] -= labelMat[j] * (Ei - Ej) / eta</span><br><span class="line">                <span class="comment"># Step 5：修剪alpha_j</span></span><br><span class="line">                alphas[j] = clipAlpha(alphas[j], H, L)</span><br><span class="line">                <span class="keyword">if</span> (abs(alphas[j] - alphaJold) &lt; <span class="number">0.00001</span>): print(<span class="string">"The change of alpha_j is to small"</span>); <span class="keyword">continue</span></span><br><span class="line">                <span class="comment"># Step 6：Update alpha_i</span></span><br><span class="line">                alphas[i] += labelMat[j] * labelMat[i] * (alphaJold - alphas[j])</span><br><span class="line">                <span class="comment"># Step 7：Update b_1,b_2</span></span><br><span class="line">                b1 = b - Ei - labelMat[i] * (alphas[i] - alphaIold) * dataMatrix[i, :] * dataMatrix[i, :].T - labelMat[</span><br><span class="line">                    j] * (alphas[j] - alphaJold) * dataMatrix[i, :] * dataMatrix[j, :].T</span><br><span class="line">                b2 = b - Ej - labelMat[i] * (alphas[i] - alphaIold) * dataMatrix[i, :] * dataMatrix[j, :].T - labelMat[</span><br><span class="line">                    j] * (alphas[j] - alphaJold) * dataMatrix[j, :] * dataMatrix[j, :].T</span><br><span class="line">                <span class="comment"># Step 8：According to b_1and b_2, update b</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="number">0</span> &lt; alphas[i]) <span class="keyword">and</span> (C &gt; alphas[i]):</span><br><span class="line">                    b = b1</span><br><span class="line">                <span class="keyword">elif</span> (<span class="number">0</span> &lt; alphas[j]) <span class="keyword">and</span> (C &gt; alphas[j]):</span><br><span class="line">                    b = b2</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    b = (b1 + b2) / <span class="number">2.0</span></span><br><span class="line">                <span class="comment"># Record optimization times</span></span><br><span class="line">                alphaPairsChanged += <span class="number">1</span></span><br><span class="line">                <span class="comment"># Print information</span></span><br><span class="line">                print(<span class="string">"Iteration:%d, Sample:%d, alpha optimization:%d"</span> % (iter_num, i, alphaPairsChanged))</span><br><span class="line">        <span class="comment"># Update iterations</span></span><br><span class="line">        <span class="keyword">if</span> (alphaPairsChanged == <span class="number">0</span>):</span><br><span class="line">            iter_num += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            iter_num = <span class="number">0</span></span><br><span class="line">        print(<span class="string">"Number of iterations: %d"</span> % iter_num)</span><br><span class="line">        print(<span class="string">"\n"</span>)</span><br><span class="line">    <span class="keyword">return</span> b, alphas</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description: Visualise classification results</span></span><br><span class="line"><span class="string">Parameters:</span></span><br><span class="line"><span class="string">	dataMat - Data matrix</span></span><br><span class="line"><span class="string">    w - Line normal vector</span></span><br><span class="line"><span class="string">    b - The intercept of line</span></span><br><span class="line"><span class="string">Returns:</span></span><br><span class="line"><span class="string">    None</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">showClassifer</span><span class="params">(dataMat, w, b)</span>:</span></span><br><span class="line">    <span class="comment"># Draw sample points</span></span><br><span class="line">    data_plus = []  <span class="comment"># Positive sample</span></span><br><span class="line">    data_minus = []  <span class="comment"># Negative sample</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(dataMat)):</span><br><span class="line">        <span class="keyword">if</span> labelMat[i] &gt; <span class="number">0</span>:</span><br><span class="line">            data_plus.append(dataMat[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            data_minus.append(dataMat[i])</span><br><span class="line">    data_plus_np = np.array(data_plus)  <span class="comment"># Convert to numpy matrix</span></span><br><span class="line">    data_minus_np = np.array(data_minus)  <span class="comment"># Convert to numpy matrix</span></span><br><span class="line">    plt.scatter(np.transpose(data_plus_np)[<span class="number">0</span>], np.transpose(data_plus_np)[<span class="number">1</span>], s=<span class="number">30</span>, alpha=<span class="number">0.7</span>)  <span class="comment"># Positive scatter plot</span></span><br><span class="line">    plt.scatter(np.transpose(data_minus_np)[<span class="number">0</span>], np.transpose(data_minus_np)[<span class="number">1</span>], s=<span class="number">30</span>, alpha=<span class="number">0.7</span>)  <span class="comment"># Negative scatter plot</span></span><br><span class="line">    <span class="comment"># Draw line</span></span><br><span class="line">    x1 = max(dataMat)[<span class="number">0</span>]</span><br><span class="line">    x2 = min(dataMat)[<span class="number">0</span>]</span><br><span class="line">    a1, a2 = w</span><br><span class="line">    b = float(b)</span><br><span class="line">    a1 = float(a1[<span class="number">0</span>])</span><br><span class="line">    a2 = float(a2[<span class="number">0</span>])</span><br><span class="line">    y1, y2 = (-b - a1 * x1) / a2, (-b - a1 * x2) / a2</span><br><span class="line">    plt.plot([x1, x2], [y1, y2])</span><br><span class="line">    <span class="comment"># Find support vector</span></span><br><span class="line">    <span class="keyword">for</span> i, alpha <span class="keyword">in</span> enumerate(alphas):</span><br><span class="line">        <span class="keyword">if</span> abs(alpha) &gt; <span class="number">0</span>:</span><br><span class="line">            x, y = dataMat[i]</span><br><span class="line">            plt.scatter([x], [y], s=<span class="number">150</span>, c=<span class="string">'none'</span>, alpha=<span class="number">0.7</span>, linewidth=<span class="number">1.5</span>, edgecolor=<span class="string">'red'</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Description: Calculate w</span></span><br><span class="line"><span class="string">Parameters:</span></span><br><span class="line"><span class="string">	dataMat - data matrix</span></span><br><span class="line"><span class="string">    labelMat - data label</span></span><br><span class="line"><span class="string">    alphas - the value of alphas</span></span><br><span class="line"><span class="string">Returns:</span></span><br><span class="line"><span class="string">    None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_w</span><span class="params">(dataMat, labelMat, alphas)</span>:</span></span><br><span class="line">    alphas, dataMat, labelMat = np.array(alphas), np.array(dataMat), np.array(labelMat)</span><br><span class="line">    w = np.dot((np.tile(labelMat.reshape(<span class="number">1</span>, <span class="number">-1</span>).T, (<span class="number">1</span>, <span class="number">2</span>)) * dataMat).T, alphas)</span><br><span class="line">    <span class="keyword">return</span> w.tolist()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#load data</span></span><br><span class="line">dataMat, labelMat = loadDataSet(<span class="string">'testSet.txt'</span>)</span><br><span class="line">b, alphas = smoSimple(dataMat, labelMat, <span class="number">0.6</span>, <span class="number">0.001</span>, <span class="number">40</span>)</span><br><span class="line">w = get_w(dataMat, labelMat, alphas)</span><br><span class="line">showClassifer(dataMat, w, b)</span><br></pre></td></tr></table></figure>
+
+<p>After a series of operations, we got such a result. Among them, the blue line in the middle is the obtained classifier, and the points circled in red circle are the support vector points.</p>
+<p><img src="https://img-blog.csdnimg.cn/20200618233516729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>It is worth mentioning that the simplified version of the SMO algorithm does not use the heuristic selection method when selecting α, and the calculation of the two multipliers is not optimized, so the algorithm is a little time-consuming.  <br/><br/><br/><br/><br/><br/></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1] <a href="https://blog.csdn.net/c406495762/article/details/78072313" target="_blank" rel="noopener">Python3《机器学习实战》学习笔记（八）：支持向量机原理篇之手撕线性SVM</a><br>[2] <a href="http://cs229.stanford.edu/materials/smo.pdf" target="_blank" rel="noopener">The Simplified SMO Algorithm</a></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YU</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-SMO"><span class="nav-number">1.</span> <span class="nav-text">What is SMO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pseudo-Code-for-Simplified-SMO"><span class="nav-number">2.</span> <span class="nav-text">Pseudo-Code for Simplified SMO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-write-a-simplified-SMO-Algorithm"><span class="nav-number">3.</span> <span class="nav-text">How to write a simplified SMO Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Data-visualization"><span class="nav-number">3.1.</span> <span class="nav-text">1. Data visualization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-The-main-part"><span class="nav-number">3.2.</span> <span class="nav-text">2. The main part</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YU</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
