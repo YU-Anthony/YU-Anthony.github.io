@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="Classification model of natural driving scenerioBai Yan 1 divided the naturally collected driving scenario data into following car, patrol, lane change, adjacent car cut, front car cut based on LightG">
+<meta name="description" content="IntentionIn real life, different drivers have different driving behaviors: for example, some drivers will consciously “help” vehicles that want to get on the ramp, while others will not. Therefore, it">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Some Thoughts">
 <meta property="og:url" content="http://yoursite.com/2020/07/11/Some%20Thoughts/index.html">
 <meta property="og:site_name" content="Yu&#39;s Blog">
-<meta property="og:description" content="Classification model of natural driving scenerioBai Yan 1 divided the naturally collected driving scenario data into following car, patrol, lane change, adjacent car cut, front car cut based on LightG">
+<meta property="og:description" content="IntentionIn real life, different drivers have different driving behaviors: for example, some drivers will consciously “help” vehicles that want to get on the ramp, while others will not. Therefore, it">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200713112546670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200711221045400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200711220904457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200713112816800.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-07-11T14:30:05.162Z">
-<meta property="article:modified_time" content="2020-07-13T04:42:42.466Z">
+<meta property="article:modified_time" content="2020-07-14T01:38:06.577Z">
 <meta property="article:author" content="YU">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200713112546670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
@@ -242,7 +242,8 @@
       <div class="post-body">
         
         
-          <h3 id="Classification-model-of-natural-driving-scenerio"><a href="#Classification-model-of-natural-driving-scenerio" class="headerlink" title="Classification model of natural driving scenerio"></a>Classification model of natural driving scenerio</h3><p>Bai Yan <a href="#refer-anchor-1"><sup>1</sup></a> divided the naturally collected driving scenario data into following car, patrol, lane change, adjacent car cut, front car cut based on LightGBM algorithm. </p>
+          <h3 id="Intention"><a href="#Intention" class="headerlink" title="Intention"></a>Intention</h3><p>In real life, different drivers have different driving behaviors: for example, some drivers will consciously “help” vehicles that want to get on the ramp, while others will not. Therefore, it is difficult for unmanned vehicles to interact with vehicles with arbitrary driving behaviors on the road. Our goal is to find out the driving scenarios where drivers will produce different driving behaviors, so as to further study how to make automatic cars produce adaptive behaviors to enhance the user experience.</p>
+<h3 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h3><h4 id="1-Classification-model-of-natural-driving-scenerio"><a href="#1-Classification-model-of-natural-driving-scenerio" class="headerlink" title="1. Classification model of natural driving scenerio"></a>1. Classification model of natural driving scenerio</h4><p>Bai Yan <a href="#refer-anchor-1"><sup>1</sup></a> divided the naturally collected driving scenario data into following car, patrol, lane change, adjacent car cut, front car cut based on LightGBM algorithm. </p>
 <center>
 <img src="https://img-blog.csdnimg.cn/20200713112546670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70" width="60%" height="60%" div align="center"> 
 
@@ -256,7 +257,8 @@
 </div>
 </center>
 
-<h3 id="Adaptive-Strategies-under-Merging-Scenarios"><a href="#Adaptive-Strategies-under-Merging-Scenarios" class="headerlink" title="Adaptive Strategies under Merging Scenarios"></a>Adaptive Strategies under Merging Scenarios</h3><p>Hu yeping <a href="#refer-anchor-2"><sup>2</sup></a> thought that the decision making during merging scenario is mainly based on the road priorities and she divided it into 4 subclass: (a) Higher priority (b) Lower priority (c) Equal priority (d) Freeway merging.</p>
+<h4 id="2-Adaptive-Strategies-under-Merging-Scenarios"><a href="#2-Adaptive-Strategies-under-Merging-Scenarios" class="headerlink" title="2. Adaptive Strategies under Merging Scenarios"></a>2. Adaptive Strategies under Merging Scenarios</h4><p>Self-driving cars in the market often adopt the most conservative driving strategies when encountering merging scenarios. If a car wants to get on the ramp, it will stop until there is no car on another road or other cars are very far away from it. Even if the road priority of the two intersections are the same, the current unmanned vehicle system will also choose to avoid other vehicles until it thinks it is safe enough to move on. Obviously, this driving strategy is totally inapplicable under the condition of dense traffic flow, and it is very difficult to get on the ramp successfully if it is completely dependent on the current unmanned vehicle system.</p>
+<p>Hu yeping <a href="#refer-anchor-2"><sup>2</sup></a> thought that the decision making during merging scenario is mainly based on the road priorities and she divided it into 4 subclass: (a) Higher priority (b) Lower priority (c) Equal priority (d) Freeway merging.</p>
 <center>
 <img src="https://img-blog.csdnimg.cn/20200711221045400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70" width="50%" height="50%" div align="center"> 
 
@@ -278,7 +280,7 @@ merging.
 </div>
 </center>
 
-<h3 id="TraficNet"><a href="#TraficNet" class="headerlink" title="TraficNet"></a>TraficNet</h3><p>TrafficNet <a href="#refer-anchor-3"><sup>3</sup></a> is a large-scale and extensible library of naturalistic driving scenarios which, in total consist of 565,291 events.</p>
+<h4 id="3-TraficNet"><a href="#3-TraficNet" class="headerlink" title="3. TraficNet"></a>3. TraficNet</h4><p>TrafficNet <a href="#refer-anchor-3"><sup>3</sup></a> is a large-scale and extensible library of naturalistic driving scenarios which, in total consist of 565,291 events.</p>
 <center>
 <img src="https://img-blog.csdnimg.cn/20200711220904457.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70" width="70%" height="70%" div align="center"> 
 
@@ -305,19 +307,27 @@ merging.
 </div>
 </center>
 
-
-<p>In summary, we may consider to design the scenarios from the following aspects.</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>In summary, we may consider to design the scenarios from the following aspects.</p>
 <ul>
 <li>Free follow</li>
 <li>Car following</li>
 <li>Lane change</li>
-<li>Adjacent car cut</li>
-<li>Front car cut</li>
-<li>Pedestrian</li>
+<li>Adjacent car cut out</li>
+<li>Front car cut in</li>
+<li>Pedestrian crossing</li>
 <li>Cyclist</li>
 <li>Stop<br>  ○ Traffic light stop<br>  ○ Stop sign</li>
 <li>Merging<br>  ○ Higher priority<br>  ○ Lower priority<br>  ○ Equal priority<br>  ○ Freeway merging</li>
 </ul>
+<h5 id="Free-Flow"><a href="#Free-Flow" class="headerlink" title="Free Flow"></a>Free Flow</h5><p>Free flow is the scenario where a vehicle goes freely without being blocked by other vehicles in front of it. </p>
+<h5 id="Car-following"><a href="#Car-following" class="headerlink" title="Car following"></a>Car following</h5><p>Car following contains the events where a vehicle keeps following one car without changing its lane.</p>
+<h5 id="Lane-Change"><a href="#Lane-Change" class="headerlink" title="Lane Change"></a>Lane Change</h5><p>In a lane change event, the vehicle changes from one lane to another. The lane change maneuver exposures the vehicle under the possibility of conflict and crash.</p>
+<h5 id="Pedestrain-Crossing"><a href="#Pedestrain-Crossing" class="headerlink" title="Pedestrain Crossing"></a>Pedestrain Crossing</h5><p>Pedestrain Crossing logged the information on events when a pedestrian crosses the street in front of the vehicle</p>
+<h5 id="Cyclist"><a href="#Cyclist" class="headerlink" title="Cyclist"></a>Cyclist</h5><p>Cyclist records the positions, in terms of longitude and latitude, of a vehicle and a cyclist in time sequence when they encounter each other.</p>
+<h5 id="Front-car-cut-in"><a href="#Front-car-cut-in" class="headerlink" title="Front car cut-in"></a>Front car cut-in</h5><p>Front car cut-in scenario is a situation in which a vehicle in front of the ego-vehicle performs a lane change into the lane of the ego-vehicle at a distance which can be deemed unsafe.</p>
+<h5 id="Adjacent-car-cut-out"><a href="#Adjacent-car-cut-out" class="headerlink" title="Adjacent car cut out"></a>Adjacent car cut out</h5><p>Adjacent car cut out is a car in front leaves the lane abruptly to avoid a stopped vehicle ahead</p>
+<h5 id="Traffic-light-stop"><a href="#Traffic-light-stop" class="headerlink" title="Traffic light stop"></a>Traffic light stop</h5><p>The driver in this situation makes the decision to brake and stop or to proceed through the intersection.</p>
+<h5 id="Stop-sign"><a href="#Stop-sign" class="headerlink" title="Stop sign"></a>Stop sign</h5><p>We can study the braking measures after the driver sees stop sign.</p>
 <div id="refer-anchor-1"></div>
 
 <p>[1] <a href="https://ieeexplore.ieee.org/abstract/document/8947318" target="_blank" rel="noopener">Yan B, Pei Y, Shuai Z, et al. Research on Classification Model of Natural Driving Scenario Based on LightGBM[C]//2019 IEEE 19th International Conference on Communication Technology (ICCT). IEEE, 2019: 1688-1693.</a></p>
@@ -394,7 +404,7 @@ merging.
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -431,7 +441,7 @@ merging.
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification-model-of-natural-driving-scenerio"><span class="nav-number">1.</span> <span class="nav-text">Classification model of natural driving scenerio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adaptive-Strategies-under-Merging-Scenarios"><span class="nav-number">2.</span> <span class="nav-text">Adaptive Strategies under Merging Scenarios</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TraficNet"><span class="nav-number">3.</span> <span class="nav-text">TraficNet</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intention"><span class="nav-number">1.</span> <span class="nav-text">Intention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Related-work"><span class="nav-number">2.</span> <span class="nav-text">Related work</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Classification-model-of-natural-driving-scenerio"><span class="nav-number">2.1.</span> <span class="nav-text">1. Classification model of natural driving scenerio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Adaptive-Strategies-under-Merging-Scenarios"><span class="nav-number">2.2.</span> <span class="nav-text">2. Adaptive Strategies under Merging Scenarios</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-TraficNet"><span class="nav-number">2.3.</span> <span class="nav-text">3. TraficNet</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">3.</span> <span class="nav-text">Summary</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Free-Flow"><span class="nav-number">3.0.1.</span> <span class="nav-text">Free Flow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Car-following"><span class="nav-number">3.0.2.</span> <span class="nav-text">Car following</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Lane-Change"><span class="nav-number">3.0.3.</span> <span class="nav-text">Lane Change</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Pedestrain-Crossing"><span class="nav-number">3.0.4.</span> <span class="nav-text">Pedestrain Crossing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cyclist"><span class="nav-number">3.0.5.</span> <span class="nav-text">Cyclist</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Front-car-cut-in"><span class="nav-number">3.0.6.</span> <span class="nav-text">Front car cut-in</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Adjacent-car-cut-out"><span class="nav-number">3.0.7.</span> <span class="nav-text">Adjacent car cut out</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Traffic-light-stop"><span class="nav-number">3.0.8.</span> <span class="nav-text">Traffic light stop</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Stop-sign"><span class="nav-number">3.0.9.</span> <span class="nav-text">Stop sign</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
