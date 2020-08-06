@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Introduction传统的分类方法依赖于特征工程和机器学习算法，比如主成分分析法（ Principal component analysis， PCA）1以无监督的方式检测出5个不同的驾驶类别。2使用了基于GMM的驾驶员模型来识别单个驾驶员的行为，主要研究了跟车行为和踏板操作（pedal operation）。3使用词袋（Bag-of-words）和K均值聚类来表示个体的驾驶特征。4使用了一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Driving style classification and predication">
+<meta property="og:url" content="http://yoursite.com/2020/08/04/Driving%20style%20classification%20and%20predication/index.html">
+<meta property="og:site_name" content="Yu&#39;s Blog">
+<meta property="og:description" content="Introduction传统的分类方法依赖于特征工程和机器学习算法，比如主成分分析法（ Principal component analysis， PCA）1以无监督的方式检测出5个不同的驾驶类别。2使用了基于GMM的驾驶员模型来识别单个驾驶员的行为，主要研究了跟车行为和踏板操作（pedal operation）。3使用词袋（Bag-of-words）和K均值聚类来表示个体的驾驶特征。4使用了一个">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-04T04:06:35.491Z">
+<meta property="article:modified_time" content="2020-08-06T12:13:33.500Z">
+<meta property="article:author" content="YU">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/04/Driving style classification and predication/"/>
+
+
+
+
+
+  <title>Driving style classification and predication | Yu's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">Driving style classification and predication</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>传统的分类方法依赖于特征工程和机器学习算法，比如主成分分析法（ Principal component analysis， PCA）<a href="#refer-anchor-1"><sup>1</sup></a>以无监督的方式检测出5个不同的驾驶类别。<a href="#refer-anchor-2"><sup>2</sup></a>使用了基于GMM的驾驶员模型来识别单个驾驶员的行为，主要研究了跟车行为和踏板操作（pedal operation）。<a href="#refer-anchor-3"><sup>3</sup></a>使用词袋（Bag-of-words）和K均值聚类来表示个体的驾驶特征。<a href="#refer-anchor-4"><sup>4</sup></a>使用了一个自编码网(autoencoder network)来提取基于道路类型的驾驶特征。</p>
+<p>然而，这些传统方法主要依赖 <code>handcrafted features</code>，这限制了机器学习算法获得更好的性能; 为此，我们可以考虑使用深度学习的方法。与现有方法相比，深度学习方法可以大大减少人工操作。</p>
+<p>2014 年, Zheng J <a href="#refer-anchor-5"><sup>5</sup></a> 等提出了一个普通的前馈神经网络模型来预测驾驶员的换道行为, 该模型融合了多个车辆在行驶过程中的数据特征, 其准确率达到了94.58%(左换道) 和73.33%(右换道)。 但是该模型没有考虑驾驶员自身的生理特征并且右换和左换道的准确率不对称. 2015 年, Peng JS 等<a href="#refer-anchor-6"><sup>6</sup></a>提出了一种多特征融合的神经网络的模型, 该模型考虑了驾驶员例如头部转动等生理因素。 并利用前馈神经网络来预测驾驶员的换道意图。但文章中提到该模型的时间窗口提取方法不准确, 可能会影响模型性能。2016 年, Dou YL 等<a href="#refer-anchor-7"><sup>7</sup></a>提出了一种以支持向量机和前馈神经网络为主要方法的预测模型. 该模型只对支持向量机和前馈神经网络的预测结果做了分析和合并, 并没有将支持向量机和神经网络的结构加以改变。 同年, Wang XP 等<a href="#refer-anchor-8"><sup>8</sup></a>提出了一种以前馈神经网络和卷积神经网络为基础的混合神经网络模型, 该模型以时间序列为输入, 通过卷积网络来提取数据特征, 再经过前馈网络进行数据融合后得出结果。但此模型的问题在于当用卷积网络提取数据时, 可能会造成数据的损失, 使得预测精度降低。</p>
+<h3 id="Data-Preprocess"><a href="#Data-Preprocess" class="headerlink" title="Data Preprocess"></a>Data Preprocess</h3><h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="1-CNN"><a href="#1-CNN" class="headerlink" title="1. CNN"></a>1. CNN</h4><p>卷积神经网络（Convolutional Neural Network，CNN）是一种适合使用在连续值输入信号上的深度神经网络，比如声音、图像和视频。</p>
+<h5 id="建议阅读文章"><a href="#建议阅读文章" class="headerlink" title="建议阅读文章"></a>建议阅读文章</h5><ol>
+<li>Characterizing Driving Styles with Deep Learning<br><a href="https://arxiv.org/pdf/1607.03611.pdf" target="_blank" rel="noopener">Paper</a> / <a href="https://github.com/sobhan-moosavi/CharacterizingDrivingStylesWithDeepLearning" target="_blank" rel="noopener">Code</a></li>
+</ol>
+<h4 id="2-Seq2Seq"><a href="#2-Seq2Seq" class="headerlink" title="2. Seq2Seq"></a>2. Seq2Seq</h4><p>Seq2Seq, 是普通 RNN 的增强版本, 由一个编码器 Encoder 和一个解码器Decoder 组成, 而 Encoder 和 Decoder 的计算内核由 GRU 构成。它能够很好的处理时间序列数据，在图像、语音和 NLP，比如：机器翻译、机器阅读、语音识别、智能对话和文档摘要生成等，都有广泛的应用。这也是目前一个不之处，seq2seq 在分类方面用的较少</p>
+<p>大多数场景下使用的 Seq2Seq 模型基于 RNN 构成的，虽然取得了不错的效果，但也有一些学者发现使用 CNN 来替换 Seq2Seq 中的 encoder 或 decoder可以达到更好的效果。但实际上 CNN-seq2seq 模型 不一定比 LSTM-Seq2Seq 好。采用 CNN 的 Seq2Seq 最大的优点在于速度快，效率高，缺点就是需要调整的参数太多。上升到 CNN 和 RNN 用于 NLP 问题时，CNN 也是可行的，且网络结构搭建更加灵活，效率高，特别是在大数据集上，往往能取得比RNN更好的结果。</p>
+<h5 id="建议阅读文章-1"><a href="#建议阅读文章-1" class="headerlink" title="建议阅读文章"></a>建议阅读文章</h5><h6 id="1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs"><a href="#1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs" class="headerlink" title="1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs"></a>1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs</h6><p><a href="https://towardsdatascience.com/time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-lstms-de7c099bd918" target="_blank" rel="noopener">Blog</a> <strong>/</strong> <a href="https://github.com/manohar029/TimeSeries-Seq2Seq-deepLSTMs-Keras/blob/master/Keras_Enc-Dec_MinTempMel.ipynb" target="_blank" rel="noopener">Code</a></p>
+<h6 id="2-Python机器学习笔记：利用-Keras-进行分类预测"><a href="#2-Python机器学习笔记：利用-Keras-进行分类预测" class="headerlink" title="2. Python机器学习笔记：利用 Keras 进行分类预测"></a>2. Python机器学习笔记：利用 Keras 进行分类预测</h6><p><a href="https://www.cnblogs.com/wj-1314/p/9591369.html" target="_blank" rel="noopener">Blog</a></p>
+<h6 id="3-seq2seq-的-keras-实现"><a href="#3-seq2seq-的-keras-实现" class="headerlink" title="3. seq2seq 的 keras 实现"></a>3. seq2seq 的 keras 实现</h6><p><a href="https://cloud.tencent.com/developer/article/1083503" target="_blank" rel="noopener">Blog</a></p>
+<h3 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h3><p>驾驶风格目前还没有一个准确的定义，因此分类的依据也有很多种，比如油耗，均速，跟车行为等。一般来说，对驾驶风格的分类大多是将其分为若干类，对应于不同的离散值，或许可以考虑连续型的驾驶风格分类算法，比如将其描述为介于-1到+1之间的值。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="refer-anchor-1"></div>
+
+<p>[1] <a href="https://ieeexplore.ieee.org/abstract/document/8947318" target="_blank" rel="noopener">Z. Constantinescu, C. Marinoiu, and M. Vladoiu, “Driving style analysis using data mining techniques,” International Journal of Computers Communications &amp; Control, vol. 5, no. 5, pp. 654–663, 2010</a></p>
+<div id="refer-anchor-2"></div>
+
+<p>[2] <a href="https://ieeexplore.ieee.org/document/8968478/" target="_blank" rel="noopener">C. Miyajima, Y. Nishiwaki, K. Ozawa, T. Wakita, K. Itou, K. Takeda, and F. Itakura, “Driver modeling based on driving behavior and its evaluation in driver identification,” Proceedings of the IEEE, vol. 95, no. 2, pp. 427–437, 2007</a></p>
+<div id="refer-anchor-3"></div>
+
+<p>[3] <a href="https://ieeexplore.ieee.org/document/8317860" target="_blank" rel="noopener">E. Yurtsever, C. Miyajima, S. Selpi, and K. Takeda, “Driving signature extraction,” in FAST-zero’15: 3rd International Symposium on Future Active Safety Technology Toward zero traffic accidents, 2015, 2015.</a></p>
+<div id="refer-anchor-4"></div>
+
+<p>[4] <a href="https://ieeexplore.ieee.org/document/8317860" target="_blank" rel="noopener">K. Sama, Y. Morales, N. Akai, H. Liu, E. Takeuchi, and K. Takeda Driving feature extraction and behavior classification using an autoencoder to reproduce the velocity styles of experts,” in 2018 21st International Conference on Intelligent Transportation Systems (ITSC). IEEE, 2018, pp. 1337–1343.</a></p>
+<p>[5] <a href="https://ieeexplore.ieee.org/document/8317860" target="_blank" rel="noopener">Zheng J, Suzuki K, Fujita M. Predicting driver’s lanechanging decisions using a neural network model. Simulation Modelling Practice and Theory, 2014, 42: 73–83.</a></p>
+<p>[6] <a href="https://ieeexplore.ieee.org/document/8317860" target="_blank" rel="noopener">Peng JS, Guo YS, Fu R, et al. Multi-parameter prediction of drivers’ lane-changing behaviour with neural network model.Applied Ergonomics, 2015, 50: 207–217.</a></p>
+<p>[7] <a href="https://ieeexplore.ieee.org/document/8317860" target="_blank" rel="noopener">Dou YL, Yan FJ, Feng DW. Lane changing prediction at highway lane drops using support vector machine and artificial neural network classifiers. Proceedings of 2016 IEEE International Conference on Advanced Intelligent Mechatronics. Banff, PB, Canada. 2016. 901–906.</a></p>
+<p>[8] <a href="https://ieeexplore.ieee.org/document/8317860" target="_blank" rel="noopener">Wang XP, Murphey YL, Kochhar DS. MTS-DeepNet for lane change prediction. Proceedings of 2016 International Joint Conference on Neural Networks. Vancouver, BC, Canada. 2016. 4571–4578.</a></p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YU</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Preprocess"><span class="nav-number">2.</span> <span class="nav-text">Data Preprocess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods"><span class="nav-number">3.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CNN"><span class="nav-number">3.1.</span> <span class="nav-text">1. CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章"><span class="nav-number">3.1.1.</span> <span class="nav-text">建议阅读文章</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Seq2Seq"><span class="nav-number">3.2.</span> <span class="nav-text">2. Seq2Seq</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">建议阅读文章</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-Python机器学习笔记：利用-Keras-进行分类预测"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">2. Python机器学习笔记：利用 Keras 进行分类预测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-seq2seq-的-keras-实现"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">3. seq2seq 的 keras 实现</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems"><span class="nav-number">4.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YU</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
