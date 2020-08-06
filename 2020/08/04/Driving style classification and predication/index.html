@@ -86,10 +86,13 @@
 <meta property="og:site_name" content="Yu&#39;s Blog">
 <meta property="og:description" content="Introduction传统的分类方法依赖于特征工程和机器学习算法，比如主成分分析法（ Principal component analysis， PCA）1以无监督的方式检测出5个不同的驾驶类别。2使用了基于GMM的驾驶员模型来识别单个驾驶员的行为，主要研究了跟车行为和踏板操作（pedal operation）。3使用词袋（Bag-of-words）和K均值聚类来表示个体的驾驶特征。4使用了一个">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200806211358528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-08-04T04:06:35.491Z">
-<meta property="article:modified_time" content="2020-08-06T12:13:33.500Z">
+<meta property="article:modified_time" content="2020-08-06T13:17:58.877Z">
 <meta property="article:author" content="YU">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 
 
 
@@ -240,7 +243,38 @@
           <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>传统的分类方法依赖于特征工程和机器学习算法，比如主成分分析法（ Principal component analysis， PCA）<a href="#refer-anchor-1"><sup>1</sup></a>以无监督的方式检测出5个不同的驾驶类别。<a href="#refer-anchor-2"><sup>2</sup></a>使用了基于GMM的驾驶员模型来识别单个驾驶员的行为，主要研究了跟车行为和踏板操作（pedal operation）。<a href="#refer-anchor-3"><sup>3</sup></a>使用词袋（Bag-of-words）和K均值聚类来表示个体的驾驶特征。<a href="#refer-anchor-4"><sup>4</sup></a>使用了一个自编码网(autoencoder network)来提取基于道路类型的驾驶特征。</p>
 <p>然而，这些传统方法主要依赖 <code>handcrafted features</code>，这限制了机器学习算法获得更好的性能; 为此，我们可以考虑使用深度学习的方法。与现有方法相比，深度学习方法可以大大减少人工操作。</p>
 <p>2014 年, Zheng J <a href="#refer-anchor-5"><sup>5</sup></a> 等提出了一个普通的前馈神经网络模型来预测驾驶员的换道行为, 该模型融合了多个车辆在行驶过程中的数据特征, 其准确率达到了94.58%(左换道) 和73.33%(右换道)。 但是该模型没有考虑驾驶员自身的生理特征并且右换和左换道的准确率不对称. 2015 年, Peng JS 等<a href="#refer-anchor-6"><sup>6</sup></a>提出了一种多特征融合的神经网络的模型, 该模型考虑了驾驶员例如头部转动等生理因素。 并利用前馈神经网络来预测驾驶员的换道意图。但文章中提到该模型的时间窗口提取方法不准确, 可能会影响模型性能。2016 年, Dou YL 等<a href="#refer-anchor-7"><sup>7</sup></a>提出了一种以支持向量机和前馈神经网络为主要方法的预测模型. 该模型只对支持向量机和前馈神经网络的预测结果做了分析和合并, 并没有将支持向量机和神经网络的结构加以改变。 同年, Wang XP 等<a href="#refer-anchor-8"><sup>8</sup></a>提出了一种以前馈神经网络和卷积神经网络为基础的混合神经网络模型, 该模型以时间序列为输入, 通过卷积网络来提取数据特征, 再经过前馈网络进行数据融合后得出结果。但此模型的问题在于当用卷积网络提取数据时, 可能会造成数据的损失, 使得预测精度降低。</p>
-<h3 id="Data-Preprocess"><a href="#Data-Preprocess" class="headerlink" title="Data Preprocess"></a>Data Preprocess</h3><h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="1-CNN"><a href="#1-CNN" class="headerlink" title="1. CNN"></a>1. CNN</h4><p>卷积神经网络（Convolutional Neural Network，CNN）是一种适合使用在连续值输入信号上的深度神经网络，比如声音、图像和视频。</p>
+<h3 id="Data-Preprocess"><a href="#Data-Preprocess" class="headerlink" title="Data Preprocess"></a>Data Preprocess</h3><p>原数据来源于数据集 <code>BROOK</code>，一共收录了 36 位参与者在四种车况( 4lanes-lowDesnity, 4lanes-highDesnity, 8lanes-lowDesnity, 8lanes-highDesnity )下的实验数据。 在实验开始前，我利用将每位参与者的数据先从 <code>txt</code> 文件转化为 <code>csv</code> 文件，然后再将 36 位实验者的数据合并在一起。<br>以 <code>8lanes-highDesnity</code> 为例，首先对每位实验者的数据进行转化：时间转化，变成浮点数等</p>
+<center>
+<img src="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70" width="90%" height="60%" div align="center"> 
+
+
+<div style="color:orange;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+
+ Figure 1. 8lanes-highDesnity Data for p36
+
+</div>
+</center>
+然后合并所有实验者的数据
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd  </span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">Folder_Path = <span class="string">'.../rawData'</span>          <span class="comment">#要拼接的文件夹及其完整路径，注意不要包含中文  </span></span><br><span class="line">SaveFile_Path =  <span class="string">'.../rawData'</span>       <span class="comment">#拼接后要保存的文件路径  </span></span><br><span class="line">SaveFile_Name = <span class="string">'8lanes-highDensity.csv'</span>              <span class="comment">#合并后要保存的文件名  </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#修改当前工作目录  </span></span><br><span class="line">os.chdir(Folder_Path) </span><br><span class="line"><span class="comment">#将该文件夹下的所有文件名存入一个列表  </span></span><br><span class="line">file_list = os.listdir()  </span><br><span class="line"></span><br><span class="line">file_list.remove(<span class="string">'.DS_Store'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">file_list.sort(key=<span class="keyword">lambda</span> x:int(x[<span class="number">8</span>:<span class="number">-4</span>]))<span class="comment">#倒着数第四位'.'为分界线，按照‘.’左边的数字从小到大排序</span></span><br><span class="line"></span><br><span class="line">print(file_list)</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取第一个CSV文件并包含表头  </span></span><br><span class="line">df = pd.read_csv(Folder_Path +<span class="string">'/'</span>+ file_list[index])  <span class="comment">#编码默认UTF-8，若乱码自行更改</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#将读取的第一个CSV文件写入合并后的文件保存  </span></span><br><span class="line">df.to_csv(SaveFile_Path+<span class="string">'/'</span>+ SaveFile_Name,encoding=<span class="string">"utf_8_sig"</span>,index=<span class="literal">False</span>)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#循环遍历列表中各个CSV文件名，并追加到合并后的文件  </span></span><br><span class="line">FileStart = <span class="number">1</span></span><br><span class="line">FileEnd = len(file_list)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(FileStart,FileEnd):  </span><br><span class="line">    df = pd.read_csv(Folder_Path + <span class="string">'/'</span>+ file_list[i])  </span><br><span class="line">    df.to_csv(SaveFile_Path+<span class="string">'/'</span>+ SaveFile_Name,encoding=<span class="string">"utf_8_sig"</span>,index=<span class="literal">False</span>, header=<span class="literal">False</span>, mode=<span class="string">'a+'</span>)</span><br></pre></td></tr></table></figure>
+合并之后共有 `183396` 条数据
+<center>
+<img src="https://img-blog.csdnimg.cn/20200806211358528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70" width="90%" height="60%" div align="center"> 
+
+
+<div style="color:orange;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+
+ Figure 2. 8lanes-highDesnity Data for 36 participant
+
+</div>
+</center>
+
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><h4 id="1-CNN"><a href="#1-CNN" class="headerlink" title="1. CNN"></a>1. CNN</h4><p>卷积神经网络（Convolutional Neural Network，CNN）是一种适合使用在连续值输入信号上的深度神经网络，比如声音、图像和视频。</p>
 <h5 id="建议阅读文章"><a href="#建议阅读文章" class="headerlink" title="建议阅读文章"></a>建议阅读文章</h5><ol>
 <li>Characterizing Driving Styles with Deep Learning<br><a href="https://arxiv.org/pdf/1607.03611.pdf" target="_blank" rel="noopener">Paper</a> / <a href="https://github.com/sobhan-moosavi/CharacterizingDrivingStylesWithDeepLearning" target="_blank" rel="noopener">Code</a></li>
 </ol>
