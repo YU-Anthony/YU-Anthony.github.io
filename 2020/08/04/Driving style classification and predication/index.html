@@ -56,10 +56,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/wit-32x32.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/wit-16x16.ico?v=5.1.4">
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200806211358528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-08-04T04:06:35.491Z">
-<meta property="article:modified_time" content="2020-08-07T03:51:39.961Z">
+<meta property="article:modified_time" content="2020-08-07T04:05:24.210Z">
 <meta property="article:author" content="YU">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
@@ -243,6 +243,8 @@
           <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>传统的分类方法依赖于特征工程和机器学习算法，比如主成分分析法（ Principal component analysis， PCA）<a href="#refer-anchor-1"><sup>1</sup></a>以无监督的方式检测出5个不同的驾驶类别。<a href="#refer-anchor-2"><sup>2</sup></a>使用了基于GMM的驾驶员模型来识别单个驾驶员的行为，主要研究了跟车行为和踏板操作（pedal operation）。<a href="#refer-anchor-3"><sup>3</sup></a>使用词袋（Bag-of-words）和K均值聚类来表示个体的驾驶特征。<a href="#refer-anchor-4"><sup>4</sup></a>使用了一个自编码网(autoencoder network)来提取基于道路类型的驾驶特征。</p>
 <p>然而，这些传统方法主要依赖 <code>handcrafted features</code>，这限制了机器学习算法获得更好的性能; 为此，我们可以考虑使用深度学习的方法。与现有方法相比，深度学习方法可以大大减少人工操作。</p>
 <p>2014 年, Zheng J <a href="#refer-anchor-5"><sup>5</sup></a> 等提出了一个普通的前馈神经网络模型来预测驾驶员的换道行为, 该模型融合了多个车辆在行驶过程中的数据特征, 其准确率达到了94.58%(左换道) 和73.33%(右换道)。 但是该模型没有考虑驾驶员自身的生理特征并且右换和左换道的准确率不对称. 2015 年, Peng JS 等<a href="#refer-anchor-6"><sup>6</sup></a>提出了一种多特征融合的神经网络的模型, 该模型考虑了驾驶员例如头部转动等生理因素。 并利用前馈神经网络来预测驾驶员的换道意图。但文章中提到该模型的时间窗口提取方法不准确, 可能会影响模型性能。2016 年, Dou YL 等<a href="#refer-anchor-7"><sup>7</sup></a>提出了一种以支持向量机和前馈神经网络为主要方法的预测模型. 该模型只对支持向量机和前馈神经网络的预测结果做了分析和合并, 并没有将支持向量机和神经网络的结构加以改变。 同年, Wang XP 等<a href="#refer-anchor-8"><sup>8</sup></a>提出了一种以前馈神经网络和卷积神经网络为基础的混合神经网络模型, 该模型以时间序列为输入, 通过卷积网络来提取数据特征, 再经过前馈网络进行数据融合后得出结果。但此模型的问题在于当用卷积网络提取数据时, 可能会造成数据的损失, 使得预测精度降低。</p>
+<h5 id="时间序列"><a href="#时间序列" class="headerlink" title="时间序列"></a>时间序列</h5><p>时间序列数据本质上反映的是某个或者某些随机变量随时间不断变化的趋势,而时间序列预测问题的核心就是从数据中挖掘出这种规律,并利用其对将来数据做出估计。</p>
+<p>时间序列数据与其他类型的数据的最大区别在于当前时刻的数据值与之前时刻的数据值存在着联系,该特点表明过去的数据已经暗示了现在或者将来数据发展变化的规律,这种规律主要包括了趋势性、周期性和不规则性。</p>
 <h3 id="Data-Preprocess"><a href="#Data-Preprocess" class="headerlink" title="Data Preprocess"></a>Data Preprocess</h3><p><a href="https://github.com/YU-Anthony/DrivingStyleClassification" target="_blank" rel="noopener">code</a><br>原数据来源于数据集 <code>BROOK</code>，一共收录了 36 位参与者在四种车况( 4lanes-lowDesnity, 4lanes-highDesnity, 8lanes-lowDesnity, 8lanes-highDesnity )下的实验数据。 在实验开始前，我利用将每位参与者的数据先从 <code>txt</code> 文件转化为 <code>csv</code> 文件，然后再将 36 位实验者的数据合并在一起。<br>以 <code>8lanes-highDesnity</code> 为例，首先对每位实验者的数据进行转化：时间转化，变成浮点数等</p>
 <center>
 <img src="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70" width="90%" height="60%" div align="center"> 
@@ -290,7 +292,9 @@
 <li>驾驶风格目前还没有一个准确的定义，因此分类的依据也有很多种，比如油耗，均速，跟车行为等。一般来说，对驾驶风格的分类大多是将其分为若干类，对应于不同的离散值，或许可以考虑连续型的驾驶风格分类算法，比如将其描述为介于-1到+1之间的值。</li>
 <li>BROOK 数据为时间序列数据，传统的机器学习方法会造成数据损失，所以希望尝试使用能够处理时间序列的深度学习算法，比如 <code>LSTM</code>, 但这也出现一个问题，LSTM 不一定适合在 BROOK 上做，因为 BROOK 的时间单位比较小。</li>
 <li>seq2seq 多用于文本翻译，预测，在多维度分类运用的少，目前还在研究代码以适应 BROOK 数据。</li>
-<li>了解时间窗口的选取。<a href="http://www.kongxiangbo.com/?p=199" target="_blank" rel="noopener">机器学习-时间序列（3）滑动窗口</a> BROOK 时间点之间的差值并不是一致的，那时间窗口如何选取？</li>
+<li>了解时间窗口的选取。<a href="http://www.kongxiangbo.com/?p=199" target="_blank" rel="noopener">机器学习-时间序列（3）滑动窗口</a> BROOK 时间点之间的差值并不是一致的，那时间窗口如何选取？这属于非同步时间序列吗？</li>
+</ol>
+<ol>
 <li>了解如何提取时间序列数据特征。<a href="https://blog.csdn.net/zhouchen1998/article/details/88773929" target="_blank" rel="noopener">时序数据处理工具-时间序列数据特征提取TsFresh</a></li>
 </ol>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="refer-anchor-1"></div>
@@ -413,7 +417,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Preprocess"><span class="nav-number">2.</span> <span class="nav-text">Data Preprocess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods"><span class="nav-number">3.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CNN"><span class="nav-number">3.1.</span> <span class="nav-text">1. CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章"><span class="nav-number">3.1.1.</span> <span class="nav-text">建议阅读文章</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Seq2Seq"><span class="nav-number">3.2.</span> <span class="nav-text">2. Seq2Seq</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">建议阅读文章</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-Python机器学习笔记：利用-Keras-进行分类预测"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">2. Python机器学习笔记：利用 Keras 进行分类预测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-seq2seq-的-keras-实现"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">3. seq2seq 的 keras 实现</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems"><span class="nav-number">4.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#时间序列"><span class="nav-number">1.0.1.</span> <span class="nav-text">时间序列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Preprocess"><span class="nav-number">2.</span> <span class="nav-text">Data Preprocess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods"><span class="nav-number">3.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CNN"><span class="nav-number">3.1.</span> <span class="nav-text">1. CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章"><span class="nav-number">3.1.1.</span> <span class="nav-text">建议阅读文章</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Seq2Seq"><span class="nav-number">3.2.</span> <span class="nav-text">2. Seq2Seq</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">建议阅读文章</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-Python机器学习笔记：利用-Keras-进行分类预测"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">2. Python机器学习笔记：利用 Keras 进行分类预测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-seq2seq-的-keras-实现"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">3. seq2seq 的 keras 实现</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems"><span class="nav-number">4.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
