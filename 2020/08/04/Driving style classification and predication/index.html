@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200806211358528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="article:published_time" content="2020-08-04T04:06:35.491Z">
-<meta property="article:modified_time" content="2020-08-29T16:10:08.486Z">
+<meta property="article:modified_time" content="2020-08-30T14:12:45.509Z">
 <meta property="article:author" content="YU">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
@@ -244,8 +244,6 @@
 <p>然而，这些传统方法主要依赖 <code>handcrafted features</code>，这限制了机器学习算法获得更好的性能; 为此，我们可以考虑使用深度学习的方法。与现有方法相比，深度学习方法可以大大减少人工操作。</p>
 <p>2014 年, Zheng J <a href="#refer-anchor-5"><sup>5</sup></a> 等提出了一个普通的前馈神经网络模型来预测驾驶员的换道行为, 该模型融合了多个车辆在行驶过程中的数据特征, 其准确率达到了94.58%(左换道) 和73.33%(右换道)。 但是该模型没有考虑驾驶员自身的生理特征并且右换和左换道的准确率不对称. 2015 年, Peng JS 等<a href="#refer-anchor-6"><sup>6</sup></a>提出了一种多特征融合的神经网络的模型, 该模型考虑了驾驶员例如头部转动等生理因素。 并利用前馈神经网络来预测驾驶员的换道意图。但文章中提到该模型的时间窗口提取方法不准确, 可能会影响模型性能。2016 年, Dou YL 等<a href="#refer-anchor-7"><sup>7</sup></a>提出了一种以支持向量机和前馈神经网络为主要方法的预测模型. 该模型只对支持向量机和前馈神经网络的预测结果做了分析和合并, 并没有将支持向量机和神经网络的结构加以改变。 同年, Wang XP 等<a href="#refer-anchor-8"><sup>8</sup></a>提出了一种以前馈神经网络和卷积神经网络为基础的混合神经网络模型, 该模型以时间序列为输入, 通过卷积网络来提取数据特征, 再经过前馈网络进行数据融合后得出结果。但此模型的问题在于当用卷积网络提取数据时, 可能会造成数据的损失, 使得预测精度降低。</p>
 <h5 id="时间序列"><a href="#时间序列" class="headerlink" title="时间序列"></a>时间序列</h5><p>时间序列是时间间隔不变的情况下收集的时间点集合。数据本质上反映的是某个或者某些随机变量随时间不断变化的趋势,而时间序列预测问题的核心就是从数据中挖掘出这种规律,并利用其对将来数据做出估计。</p>
-<h5 id="时间序列聚类"><a href="#时间序列聚类" class="headerlink" title="时间序列聚类"></a>时间序列聚类</h5><p>由于时间序列的维度一般都比较高，高则上千维、上万维，所以在聚类之前，我们需要使用合理的方法去降低时间序列的维度。时间序列的随机扰动和噪声比较多，如何分析序列的相似度变得相当困难。许多聚类算法，如k-means的效果和参数的选取有密切关系。面对大规模的时序数据，难以人工选取合适的参数，因此我们需要设计更智能的参数选择方法。</p>
-<p>要先理解所用的time series的特性，不同的time series的生成机制不一样, 因此对ECG和Forex聚类用的就不是同一种方法。在理解的基础上你提取features然后再进行聚类, 比如，你可以先用Independent Component Analysis提取features然后用K-means Clustering进行聚类, 或者, 你也可以对time series进行某种编码, 比如用SAX(Symbolic Aggregate Approximation), 然后再聚类。</p>
 <p>时间序列数据与其他类型的数据的最大区别在于当前时刻的数据值与之前时刻的数据值存在着联系,该特点表明过去的数据已经暗示了现在或者将来数据发展变化的规律,这种规律主要包括了趋势性、周期性和不规则性。</p>
 <h3 id="Data-Preprocess"><a href="#Data-Preprocess" class="headerlink" title="Data Preprocess"></a>Data Preprocess</h3><p><a href="https://github.com/YU-Anthony/DrivingStyleClassification" target="_blank" rel="noopener">code</a><br>原数据来源于数据集 <code>BROOK</code>，一共收录了 36 位参与者在四种车况( 4lanes-lowDesnity, 4lanes-highDesnity, 8lanes-lowDesnity, 8lanes-highDesnity )下的实验数据。 在实验开始前，我利用将每位参与者的数据先从 <code>txt</code> 文件转化为 <code>csv</code> 文件，然后再将 36 位实验者的数据合并在一起。<br>以 <code>8lanes-highDesnity</code> 为例，首先对每位实验者的数据进行转化：时间转化，变成浮点数等</p>
 <center>
@@ -278,6 +276,22 @@
 </div>
 </center>
 
+<h3 id="Time-series-clustering"><a href="#Time-series-clustering" class="headerlink" title="Time series clustering"></a>Time series clustering</h3><p>由于时间序列的维度一般都比较高，高则上千维、上万维，所以在聚类之前，我们需要使用合理的方法去降低时间序列的维度。时间序列的随机扰动和噪声比较多，如何分析序列的相似度变得相当困难。许多聚类算法，如k-means的效果和参数的选取有密切关系。面对大规模的时序数据，难以人工选取合适的参数，因此我们需要设计更智能的参数选择方法。</p>
+<p>要先理解所用的time series的特性，不同的time series的生成机制不一样, 因此对ECG和Forex聚类用的就不是同一种方法。在理解的基础上你提取features然后再进行聚类, 比如，你可以先用Independent Component Analysis提取features然后用K-means Clustering进行聚类, 或者, 你也可以对time series进行某种编码, 比如用SAX(Symbolic Aggregate Approximation), 然后再聚类。</p>
+<h4 id="1-K-means"><a href="#1-K-means" class="headerlink" title="1.  K-means"></a>1.  K-means</h4><h5 id="1-1-最优-k-值的确定方法-手肘法"><a href="#1-1-最优-k-值的确定方法-手肘法" class="headerlink" title="1.1 最优 k 值的确定方法-手肘法"></a>1.1 最优 k 值的确定方法-手肘法</h5><ul>
+<li>随着聚类数k的增大，样本划分会更加精细，每个簇的聚合程度会逐渐提高，那么误差平方和SSE自然会逐渐变小。</li>
+<li>当k小于真实聚类数时，由于k的增大会大幅增加每个簇的聚合程度，故SSE的下降幅度会很大，而当k到达真实聚类数时，再增加k所得到的聚合程度回报会迅速变小，所以SSE的下降幅度会骤减，然后随着k值的继续增大而趋于平缓，也就是说SSE和k的关系图是一个手肘的形状，而这个肘部对应的k值就是数据的真实聚类数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#'利用SSE选择k'</span></span><br><span class="line">SSE = []  <span class="comment"># 存放每次结果的误差平方和</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">9</span>):</span><br><span class="line">     estimator = KMeans(n_clusters=k)  <span class="comment"># 构造聚类器</span></span><br><span class="line">     estimator.fit(data[[<span class="string">'Position_x'</span>,<span class="string">'Position_z'</span>,<span class="string">' Speed (km/h) '</span>]])</span><br><span class="line">     SSE.append(estimator.inertia_)</span><br><span class="line">X = range(<span class="number">1</span>,<span class="number">9</span>)</span><br><span class="line">plt.xlabel(<span class="string">'k'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'SSE'</span>)</span><br><span class="line">plt.plot(X,SSE,<span class="string">'o-'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="1-2-最优-k-值的确定方法-轮廓系数法"><a href="#1-2-最优-k-值的确定方法-轮廓系数法" class="headerlink" title="1.2 最优 k 值的确定方法-轮廓系数法"></a>1.2 最优 k 值的确定方法-轮廓系数法</h5><ul>
+<li>轮廓系数，是用于评价聚类效果好坏的一种指标。可以理解为描述聚类后各个类别的轮廓清晰度的指标。其包含有两种因素——内聚度和分离度。<ul>
+<li>内聚度可以理解为反映一个样本点与类内元素的紧密程度。</li>
+<li>分离度可以理解为反映一个样本点与类外元素的紧密程度。</li>
+</ul>
+</li>
+<li>我们需要将K值设定为具体的多个数值，范围可以人为规定，如2到10。每个K值下进行聚类，最终计算聚类结果的轮廓系数。最终将轮廓系数绘制关于K的折线图（绘图更直观）。然后将轮廓系数最大的K值作为最终的K值。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 轮廓系数法</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> silhouette_score</span><br><span class="line"></span><br><span class="line">Scores = []  <span class="comment"># 存放轮廓系数</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">9</span>):</span><br><span class="line">    estimator = KMeans(n_clusters=k)  <span class="comment"># 构造聚类器</span></span><br><span class="line">    estimator.fit(data[[<span class="string">'Position_x'</span>,<span class="string">'Position_z'</span>,<span class="string">' Speed (km/h) '</span>]])</span><br><span class="line">    Scores.append(silhouette_score(data[[<span class="string">'Position_x'</span>,<span class="string">'Position_z'</span>,<span class="string">' Speed (km/h) '</span>]],estimator.labels_,metric=<span class="string">'euclidean'</span>))</span><br><span class="line">X = range(<span class="number">2</span>,<span class="number">9</span>)</span><br><span class="line">plt.xlabel(<span class="string">'k'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'轮廓系数'</span>)</span><br><span class="line">plt.plot(X,Scores,<span class="string">'o-'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <h3 id="DL-classification-Methods"><a href="#DL-classification-Methods" class="headerlink" title="DL classification Methods"></a>DL classification Methods</h3><h4 id="1-CNN"><a href="#1-CNN" class="headerlink" title="1. CNN"></a>1. CNN</h4><p>卷积神经网络（Convolutional Neural Network，CNN）是一种适合使用在连续值输入信号上的深度神经网络，比如声音、图像和视频。</p>
 <h5 id="建议阅读文章"><a href="#建议阅读文章" class="headerlink" title="建议阅读文章"></a>建议阅读文章</h5><ol>
 <li>Characterizing Driving Styles with Deep Learning</li>
@@ -305,87 +319,147 @@
 <p>实验数据</p>
 <html>
 <table>
-   <tr>
-      <th>RNN Cell Type</th>
-      <th colspan="5">StackedLSTM</th>
-      <th colspan="5">StackedGRU</th>
-      <th colspan="5">BiLSTM</th>
-      <th colspan="5">BiGRU</th>
-   </tr>
-   <tr>
-      <th>Run Times</th>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
-
-   </tr>
-   <tr>
-      <th>Test Accuracy</th>
-      <td>11.11%</td>
-      <td>7.59%</td>
-      <td>21.05%</td>
-      <td>17.39%</td>
-      <td>29.41%</td>
-      <td>27.27%</td>
-      <td>31.58%</td>
-      <td>19.64%</td>
-      <td>6.25%</td>
-      <td>29.82%</td>
-      <td>43.28%</td>
-      <td>33.33%</td>
-      <td>28.18%</td>
-      <td>32.69%</td>
-      <td>16.22%</td>
-      <td>31.30%</td>
-      <td>12.37%</td>
-      <td>33.08%</td>
-      <td>24.29%</td>
-      <td>14.16%</td>
-   </tr>
-   <tr>
-      <th>Train Time</th>
-      <td>2208.5 sec</td>
-      <td>3007.2 sec</td>
-      <td>2526.3 sec</td>
-      <td>2603.9 sec</td>
-      <td>2127.8 sec</td>
-      <td>2328.0 sec</td>
-      <td>2335.2 sec</td>
-      <td>1892.0 sec</td>
-      <td>2010.0 sec</td>
-      <td>1953.7 sec</td>
-      <td>1107.6 sec</td>
-      <td>1345.3 sec</td>
-      <td>1084.4 sec</td>
-      <td>1148.1 sec</td>
-      <td>1128.4 sec</td>
-      <td>1125.0 sec</td>
-      <td>1172.0 sec</td>
-      <td>1190.2 sec</td>
-      <td>1157.9 sec</td>
-      <td>1250.3 sec</td>
-
-   </tr>
-
+    <tr>
+        <th >RNN Cell Type</th>
+        <th >Run Times</th>
+        <th >Test Accuracy</th>
+        <th >Train Time</th>
+    </tr>
+    <tr>
+        <th  rowspan="7"> StackedLSTM</th>
+    </tr>
+    <tr>
+        <td  >1</td>
+        <td>11.11%</td>
+        <td>2208.5 sec</td>
+    </tr>
+    <tr>
+        <td  >2</td>
+        <td>7.59%</td>
+        <td>3007.2 sec</td>
+    </tr>
+    <tr>
+        <td  >3</td>
+        <td>21.05%</td>
+        <td>2526.3 sec</td>
+    </tr>
+    <tr>
+        <td  >4</td>
+        <td>17.39%</td>
+        <td>2603.9 sec</td>
+    </tr>
+    <tr>
+        <td  >5</td>
+        <td>29.41%</td>
+        <td>2127.8 sec</td>
+    </tr>
+    <tr>
+        <td  >Mean</td>
+        <td>17.31%</td>
+        <td>2494.74 sec</td>
+    </tr>
+    <tr>
+        <th  rowspan="7"> StackedGRU</th>
+    </tr>
+    <tr>
+        <td  >1</td>
+        <td>27.27%</td>
+        <td>2328.0 sec</td>
+    </tr>
+    <tr>
+        <td  >2</td>
+        <td>31.58%</td>
+        <td>2335.2 sec</td>
+    </tr>
+    <tr>
+        <td  >3</td>
+        <td>19.64%</td>
+        <td>1892.0 sec</td>
+    </tr>
+    <tr>
+        <td  >4</td>
+        <td>6.25%</td>
+        <td>2010.0 sec</td>
+    </tr>
+    <tr>
+        <td  >5</td>
+        <td>29.82%</td>
+        <td>1953.7 sec</td>
+    </tr>
+    <tr>
+        <td  >Mean</td>
+        <td>22.912%</td>
+        <td>2103.78 sec</td>
+    </tr>
+    <tr>
+        <th  rowspan="7"> BiLSTM</th>
+    </tr>
+    <tr>
+        <td  >1</td>
+        <td>43.28%</td>
+        <td>1107.6 sec</td>
+    </tr>
+    <tr>
+        <td  >2</td>
+        <td>33.33%</td>
+        <td>1345.3 sec</td>
+    </tr>
+    <tr>
+        <td  >3</td>
+        <td>28.18%</td>
+        <td>1084.4 sec</td>
+    </tr>
+    <tr>
+        <td  >4</td>
+        <td>32.69%</td>
+        <td>1148.1 sec</td>
+    </tr>
+    <tr>
+        <td  >5</td>
+        <td>16.22%</td>
+        <td>1128.4 sec</td>
+    </tr>
+    <tr>
+        <td  >Mean</td>
+        <td>30.74%</td>
+        <td>1169.96 sec</td>
+    </tr>
+    <tr>
+        <th  rowspan="7"> BiGRU</th>
+    </tr>
+    <tr>
+        <td  >1</td>
+        <td>31.30%</td>
+        <td>1125.0 sec</td>
+    </tr>
+    <tr>
+        <td  >2</td>
+        <td>12.37%</td>
+         <td>1227.0 sec</td>
+    </tr>
+    <tr>
+        <td  >3</td>
+        <td>33.08%</td>
+        <td>1190.2 sec</td>
+    </tr>
+    <tr>
+        <td  >4</td>
+        <td>24.29%</td>
+        <td>1157.9 sec</td>
+    </tr>
+    <tr>
+        <td  >5</td>
+        <td>14.16%</td>
+        <td>1250.3 sec</td>
+    </tr>
+    <tr>
+        <td  >Mean</td>
+        <td>23.04%</td>
+        <td>1415.08 sec</td>
+    </tr>
 </table>
 </html>
+
 
 <h3 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h3><ol>
 <li>驾驶风格目前还没有一个准确的定义，因此分类的依据也有很多种，比如油耗，均速，跟车行为等。一般来说，对驾驶风格的分类大多是将其分为若干类，对应于不同的离散值，或许可以考虑连续型的驾驶风格分类算法，比如将其描述为介于-1到+1之间的值。</li>
@@ -517,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#时间序列"><span class="nav-number">1.0.1.</span> <span class="nav-text">时间序列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#时间序列聚类"><span class="nav-number">1.0.2.</span> <span class="nav-text">时间序列聚类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Preprocess"><span class="nav-number">2.</span> <span class="nav-text">Data Preprocess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DL-classification-Methods"><span class="nav-number">3.</span> <span class="nav-text">DL classification Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CNN"><span class="nav-number">3.1.</span> <span class="nav-text">1. CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章"><span class="nav-number">3.1.1.</span> <span class="nav-text">建议阅读文章</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Seq2Seq"><span class="nav-number">3.2.</span> <span class="nav-text">2. Seq2Seq</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">建议阅读文章</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-Python机器学习笔记：利用-Keras-进行分类预测"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">2. Python机器学习笔记：利用 Keras 进行分类预测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-seq2seq-的-keras-实现"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">3. seq2seq 的 keras 实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-MultiLSTMRNN"><span class="nav-number">3.3.</span> <span class="nav-text">3. MultiLSTMRNN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems"><span class="nav-number">4.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#时间序列"><span class="nav-number">1.0.1.</span> <span class="nav-text">时间序列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Preprocess"><span class="nav-number">2.</span> <span class="nav-text">Data Preprocess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-series-clustering"><span class="nav-number">3.</span> <span class="nav-text">Time series clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-K-means"><span class="nav-number">3.1.</span> <span class="nav-text">1.  K-means</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-最优-k-值的确定方法-手肘法"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1 最优 k 值的确定方法-手肘法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-最优-k-值的确定方法-轮廓系数法"><span class="nav-number">3.1.2.</span> <span class="nav-text">1.2 最优 k 值的确定方法-轮廓系数法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DL-classification-Methods"><span class="nav-number">4.</span> <span class="nav-text">DL classification Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CNN"><span class="nav-number">4.1.</span> <span class="nav-text">1. CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章"><span class="nav-number">4.1.1.</span> <span class="nav-text">建议阅读文章</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Seq2Seq"><span class="nav-number">4.2.</span> <span class="nav-text">2. Seq2Seq</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">建议阅读文章</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-Python机器学习笔记：利用-Keras-进行分类预测"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">2. Python机器学习笔记：利用 Keras 进行分类预测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-seq2seq-的-keras-实现"><span class="nav-number">4.2.1.3.</span> <span class="nav-text">3. seq2seq 的 keras 实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-MultiLSTMRNN"><span class="nav-number">4.3.</span> <span class="nav-text">3. MultiLSTMRNN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems"><span class="nav-number">5.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
