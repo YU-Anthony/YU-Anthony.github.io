@@ -88,8 +88,11 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200806211358528.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200830222343477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center)">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200831092709508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center)">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200831093031609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center)">
 <meta property="article:published_time" content="2020-08-04T04:06:35.491Z">
-<meta property="article:modified_time" content="2020-08-30T14:12:45.509Z">
+<meta property="article:modified_time" content="2020-08-31T01:31:00.969Z">
 <meta property="article:author" content="YU">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
@@ -278,45 +281,98 @@
 
 <h3 id="Time-series-clustering"><a href="#Time-series-clustering" class="headerlink" title="Time series clustering"></a>Time series clustering</h3><p>由于时间序列的维度一般都比较高，高则上千维、上万维，所以在聚类之前，我们需要使用合理的方法去降低时间序列的维度。时间序列的随机扰动和噪声比较多，如何分析序列的相似度变得相当困难。许多聚类算法，如k-means的效果和参数的选取有密切关系。面对大规模的时序数据，难以人工选取合适的参数，因此我们需要设计更智能的参数选择方法。</p>
 <p>要先理解所用的time series的特性，不同的time series的生成机制不一样, 因此对ECG和Forex聚类用的就不是同一种方法。在理解的基础上你提取features然后再进行聚类, 比如，你可以先用Independent Component Analysis提取features然后用K-means Clustering进行聚类, 或者, 你也可以对time series进行某种编码, 比如用SAX(Symbolic Aggregate Approximation), 然后再聚类。</p>
+<center>
+<img src="https://img-blog.csdnimg.cn/20200830222343477.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center)" width="90%" height="60%" div align="center"> 
+
+
+<div style="color:orange;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+
+ Figure 3. Clustering approaches
+
+</div>
+</center>
+
 <h4 id="1-K-means"><a href="#1-K-means" class="headerlink" title="1.  K-means"></a>1.  K-means</h4><h5 id="1-1-最优-k-值的确定方法-手肘法"><a href="#1-1-最优-k-值的确定方法-手肘法" class="headerlink" title="1.1 最优 k 值的确定方法-手肘法"></a>1.1 最优 k 值的确定方法-手肘法</h5><ul>
 <li>随着聚类数k的增大，样本划分会更加精细，每个簇的聚合程度会逐渐提高，那么误差平方和SSE自然会逐渐变小。</li>
 <li>当k小于真实聚类数时，由于k的增大会大幅增加每个簇的聚合程度，故SSE的下降幅度会很大，而当k到达真实聚类数时，再增加k所得到的聚合程度回报会迅速变小，所以SSE的下降幅度会骤减，然后随着k值的继续增大而趋于平缓，也就是说SSE和k的关系图是一个手肘的形状，而这个肘部对应的k值就是数据的真实聚类数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#'利用SSE选择k'</span></span><br><span class="line">SSE = []  <span class="comment"># 存放每次结果的误差平方和</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">9</span>):</span><br><span class="line">     estimator = KMeans(n_clusters=k)  <span class="comment"># 构造聚类器</span></span><br><span class="line">     estimator.fit(data[[<span class="string">'Position_x'</span>,<span class="string">'Position_z'</span>,<span class="string">' Speed (km/h) '</span>]])</span><br><span class="line">     SSE.append(estimator.inertia_)</span><br><span class="line">X = range(<span class="number">1</span>,<span class="number">9</span>)</span><br><span class="line">plt.xlabel(<span class="string">'k'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'SSE'</span>)</span><br><span class="line">plt.plot(X,SSE,<span class="string">'o-'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-</li>
+<center><br><img src="https://img-blog.csdnimg.cn/20200831092709508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center)" width="90%" height="60%" div align="center"> </li>
 </ul>
-<h5 id="1-2-最优-k-值的确定方法-轮廓系数法"><a href="#1-2-最优-k-值的确定方法-轮廓系数法" class="headerlink" title="1.2 最优 k 值的确定方法-轮廓系数法"></a>1.2 最优 k 值的确定方法-轮廓系数法</h5><ul>
-<li>轮廓系数，是用于评价聚类效果好坏的一种指标。可以理解为描述聚类后各个类别的轮廓清晰度的指标。其包含有两种因素——内聚度和分离度。<ul>
-<li>内聚度可以理解为反映一个样本点与类内元素的紧密程度。</li>
-<li>分离度可以理解为反映一个样本点与类外元素的紧密程度。</li>
-</ul>
-</li>
-<li>我们需要将K值设定为具体的多个数值，范围可以人为规定，如2到10。每个K值下进行聚类，最终计算聚类结果的轮廓系数。最终将轮廓系数绘制关于K的折线图（绘图更直观）。然后将轮廓系数最大的K值作为最终的K值。</li>
-</ul>
+<div style="color:orange;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+
+
+</div>
+</center>
+
+
+##### 1.2 最优 k 值的确定方法-轮廓系数法
+- 轮廓系数，是用于评价聚类效果好坏的一种指标。可以理解为描述聚类后各个类别的轮廓清晰度的指标。其包含有两种因素——内聚度和分离度。
+    - 内聚度可以理解为反映一个样本点与类内元素的紧密程度。
+    - 分离度可以理解为反映一个样本点与类外元素的紧密程度。
+- 我们需要将K值设定为具体的多个数值，范围可以人为规定，如2到10。每个K值下进行聚类，最终计算聚类结果的轮廓系数。最终将轮廓系数绘制关于K的折线图（绘图更直观）。然后将轮廓系数最大的K值作为最终的K值。
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 轮廓系数法</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> silhouette_score</span><br><span class="line"></span><br><span class="line">Scores = []  <span class="comment"># 存放轮廓系数</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">2</span>,<span class="number">9</span>):</span><br><span class="line">    estimator = KMeans(n_clusters=k)  <span class="comment"># 构造聚类器</span></span><br><span class="line">    estimator.fit(data[[<span class="string">'Position_x'</span>,<span class="string">'Position_z'</span>,<span class="string">' Speed (km/h) '</span>]])</span><br><span class="line">    Scores.append(silhouette_score(data[[<span class="string">'Position_x'</span>,<span class="string">'Position_z'</span>,<span class="string">' Speed (km/h) '</span>]],estimator.labels_,metric=<span class="string">'euclidean'</span>))</span><br><span class="line">X = range(<span class="number">2</span>,<span class="number">9</span>)</span><br><span class="line">plt.xlabel(<span class="string">'k'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'轮廓系数'</span>)</span><br><span class="line">plt.plot(X,Scores,<span class="string">'o-'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<h3 id="DL-classification-Methods"><a href="#DL-classification-Methods" class="headerlink" title="DL classification Methods"></a>DL classification Methods</h3><h4 id="1-CNN"><a href="#1-CNN" class="headerlink" title="1. CNN"></a>1. CNN</h4><p>卷积神经网络（Convolutional Neural Network，CNN）是一种适合使用在连续值输入信号上的深度神经网络，比如声音、图像和视频。</p>
-<h5 id="建议阅读文章"><a href="#建议阅读文章" class="headerlink" title="建议阅读文章"></a>建议阅读文章</h5><ol>
-<li>Characterizing Driving Styles with Deep Learning</li>
-</ol>
-<ul>
-<li>已经尝试用这篇文章的 code 跑 BROOK 数据<br><a href="https://arxiv.org/pdf/1607.03611.pdf" target="_blank" rel="noopener">Paper</a> / <a href="https://github.com/sobhan-moosavi/CharacterizingDrivingStylesWithDeepLearning" target="_blank" rel="noopener">Code</a></li>
-</ul>
-<h4 id="2-Seq2Seq"><a href="#2-Seq2Seq" class="headerlink" title="2. Seq2Seq"></a>2. Seq2Seq</h4><p>Seq2Seq, 是普通 RNN 的增强版本, 由一个编码器 Encoder 和一个解码器 Decoder 组成, 而 Encoder 和 Decoder 的计算内核由 GRU 构成。它能够很好的处理时间序列数据，在图像、语音和 NLP，比如：机器翻译、机器阅读、语音识别、智能对话和文档摘要生成等，都有广泛的应用。这也是目前一个不之处，seq2seq 在分类方面用的较少</p>
-<p>大多数场景下使用的 Seq2Seq 模型基于 RNN 构成的，虽然取得了不错的效果，但也有一些学者发现使用 CNN 来替换 Seq2Seq 中的 encoder 或 decoder可以达到更好的效果。但实际上 CNN-seq2seq 模型 不一定比 LSTM-Seq2Seq 好。采用 CNN 的 Seq2Seq 最大的优点在于速度快，效率高，缺点就是需要调整的参数太多。上升到 CNN 和 RNN 用于 NLP 问题时，CNN 也是可行的，且网络结构搭建更加灵活，效率高，特别是在大数据集上，往往能取得比RNN更好的结果。</p>
-<h5 id="建议阅读文章-1"><a href="#建议阅读文章-1" class="headerlink" title="建议阅读文章"></a>建议阅读文章</h5><h6 id="1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs"><a href="#1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs" class="headerlink" title="1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs"></a>1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs</h6><p><a href="https://towardsdatascience.com/time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-lstms-de7c099bd918" target="_blank" rel="noopener">Blog</a> <strong>/</strong> <a href="https://github.com/manohar029/TimeSeries-Seq2Seq-deepLSTMs-Keras/blob/master/Keras_Enc-Dec_MinTempMel.ipynb" target="_blank" rel="noopener">Code</a></p>
-<h6 id="2-Python机器学习笔记：利用-Keras-进行分类预测"><a href="#2-Python机器学习笔记：利用-Keras-进行分类预测" class="headerlink" title="2. Python机器学习笔记：利用 Keras 进行分类预测"></a>2. Python机器学习笔记：利用 Keras 进行分类预测</h6><p><a href="https://www.cnblogs.com/wj-1314/p/9591369.html" target="_blank" rel="noopener">Blog</a></p>
-<h6 id="3-seq2seq-的-keras-实现"><a href="#3-seq2seq-的-keras-实现" class="headerlink" title="3. seq2seq 的 keras 实现"></a>3. seq2seq 的 keras 实现</h6><p><a href="https://cloud.tencent.com/developer/article/1083503" target="_blank" rel="noopener">Blog</a></p>
-<h4 id="3-MultiLSTMRNN"><a href="#3-MultiLSTMRNN" class="headerlink" title="3. MultiLSTMRNN"></a>3. MultiLSTMRNN</h4><p>输出层： softmax. softmax函数可以将所有类别打分都限制在【0,1】之间，而且所有类别打分和是1，这样就可以将最终输出结果看做是该类别的概率，于是就可以将实际情况与预测情况进行比较来对网络进行调节。</p>
-<p>待解决问题：</p>
-<ol>
-<li><p>Dev loss 一直增加<br>验证集的loss不下降分为两种。一种是训练集上的loss也不下降，这时问题主要在训练集的loss上，应当先参考上述方法解决。另一种是训练集上的loss可以下降，但验证集上的loss已经不降了，这里我们主要说明这种情况下的问题。<br>由于验证集是从同一批训练数据中划分出来的，所以一般不存在数据集的问题，所以主要是过拟合。过拟合解决起来，其实不怎么复杂，无非就几种方法，但是对工程师自身的条件要求比较高。</p>
-<ul>
-<li>适当的正则化和降维</li>
-<li>适当降低模型的规模</li>
-<li>获取更多的数据集</li>
-<li>对数据集做扰动和扩增</li>
-</ul>
-</li>
-</ol>
-<p>实验数据</p>
+<center>
+<img src="https://img-blog.csdnimg.cn/20200831093031609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center)" width="90%" height="60%" div align="center"> 
+
+
+<div style="color:orange;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+
+
+</div>
+</center>
+
+
+### DL classification Methods
+#### 1. CNN
+卷积神经网络（Convolutional Neural Network，CNN）是一种适合使用在连续值输入信号上的深度神经网络，比如声音、图像和视频。
+
+##### 建议阅读文章
+1. Characterizing Driving Styles with Deep Learning
+- 已经尝试用这篇文章的 code 跑 BROOK 数据
+[Paper](https://arxiv.org/pdf/1607.03611.pdf) / [Code](https://github.com/sobhan-moosavi/CharacterizingDrivingStylesWithDeepLearning)
+
+#### 2. Seq2Seq
+Seq2Seq, 是普通 RNN 的增强版本, 由一个编码器 Encoder 和一个解码器 Decoder 组成, 而 Encoder 和 Decoder 的计算内核由 GRU 构成。它能够很好的处理时间序列数据，在图像、语音和 NLP，比如：机器翻译、机器阅读、语音识别、智能对话和文档摘要生成等，都有广泛的应用。这也是目前一个不之处，seq2seq 在分类方面用的较少
+
+大多数场景下使用的 Seq2Seq 模型基于 RNN 构成的，虽然取得了不错的效果，但也有一些学者发现使用 CNN 来替换 Seq2Seq 中的 encoder 或 decoder可以达到更好的效果。但实际上 CNN-seq2seq 模型 不一定比 LSTM-Seq2Seq 好。采用 CNN 的 Seq2Seq 最大的优点在于速度快，效率高，缺点就是需要调整的参数太多。上升到 CNN 和 RNN 用于 NLP 问题时，CNN 也是可行的，且网络结构搭建更加灵活，效率高，特别是在大数据集上，往往能取得比RNN更好的结果。
+
+##### 建议阅读文章
+######1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs
+[Blog](https://towardsdatascience.com/time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-lstms-de7c099bd918) **/** [Code](https://github.com/manohar029/TimeSeries-Seq2Seq-deepLSTMs-Keras/blob/master/Keras_Enc-Dec_MinTempMel.ipynb)
+
+######2. Python机器学习笔记：利用 Keras 进行分类预测
+[Blog](https://www.cnblogs.com/wj-1314/p/9591369.html)
+
+######3. seq2seq 的 keras 实现
+[Blog](https://cloud.tencent.com/developer/article/1083503)
+
+
+
+#### 3. MultiLSTMRNN
+输出层： softmax. softmax函数可以将所有类别打分都限制在【0,1】之间，而且所有类别打分和是1，这样就可以将最终输出结果看做是该类别的概率，于是就可以将实际情况与预测情况进行比较来对网络进行调节。
+
+待解决问题：
+1. Dev loss 一直增加
+验证集的loss不下降分为两种。一种是训练集上的loss也不下降，这时问题主要在训练集的loss上，应当先参考上述方法解决。另一种是训练集上的loss可以下降，但验证集上的loss已经不降了，这里我们主要说明这种情况下的问题。
+由于验证集是从同一批训练数据中划分出来的，所以一般不存在数据集的问题，所以主要是过拟合。过拟合解决起来，其实不怎么复杂，无非就几种方法，但是对工程师自身的条件要求比较高。
+
+    - 适当的正则化和降维
+    - 适当降低模型的规模
+    - 获取更多的数据集
+    - 对数据集做扰动和扩增
+
+
+实验测试数据
+
 <html>
 <table>
     <tr>
@@ -461,17 +517,23 @@
 </html>
 
 
-<h3 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h3><ol>
-<li>驾驶风格目前还没有一个准确的定义，因此分类的依据也有很多种，比如油耗，均速，跟车行为等。一般来说，对驾驶风格的分类大多是将其分为若干类，对应于不同的离散值，或许可以考虑连续型的驾驶风格分类算法，比如将其描述为介于-1到+1之间的值。</li>
-<li>BROOK 数据为时间序列数据，传统的机器学习方法会造成数据损失，所以希望尝试使用能够处理时间序列的深度学习算法，比如 <code>LSTM</code>, 但这也出现一个问题，LSTM 不一定适合在 BROOK 上做，因为 BROOK 的时间单位比较小。</li>
-<li>seq2seq 多用于文本翻译，预测，在多维度分类运用的少，目前还在研究代码以适应 BROOK 数据。</li>
-<li>了解时间窗口的选取。<a href="http://www.kongxiangbo.com/?p=199" target="_blank" rel="noopener">机器学习-时间序列（3）滑动窗口</a> BROOK 时间点之间的差值并不是一致的，那时间窗口如何选取？这属于非同步时间序列吗？（其实应该算非等间隔时间序列）</li>
-<li>如果一个时间序列不是按相同用时间间隔得到的，那是不是就不能用来时间序列分析了？<br>想到的方法 1. 人为的将数据处理为等间隔的<br><a href="https://www.zhihu.com/question/25399280" target="_blank" rel="noopener">建议阅读</a></li>
-<li>了解如何提取时间序列数据特征。<a href="https://blog.csdn.net/zhouchen1998/article/details/88773929" target="_blank" rel="noopener">时序数据处理工具-时间序列数据特征提取TsFresh</a></li>
-<li>神经网络是怎么进行分类操作的？一般的做法都是设置好网络架构，但不清楚这个分类逻辑。我现在做的感觉只是一个 driver identification 问题。</li>
-<li>很多神经网络问题都是提前打好标签，那针对 BROOK 这种没有标签的数据改选择聚类还是分类算法？<br>分类是事先定义好类别 ，类别数不变 。聚类则没有事先预定的类别，类别数不确定。</li>
-</ol>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="refer-anchor-1"></div>
+### Problems
+
+1. 驾驶风格目前还没有一个准确的定义，因此分类的依据也有很多种，比如油耗，均速，跟车行为等。一般来说，对驾驶风格的分类大多是将其分为若干类，对应于不同的离散值，或许可以考虑连续型的驾驶风格分类算法，比如将其描述为介于-1到+1之间的值。
+2. BROOK 数据为时间序列数据，传统的机器学习方法会造成数据损失，所以希望尝试使用能够处理时间序列的深度学习算法，比如 `LSTM`, 但这也出现一个问题，LSTM 不一定适合在 BROOK 上做，因为 BROOK 的时间单位比较小。
+3. seq2seq 多用于文本翻译，预测，在多维度分类运用的少，目前还在研究代码以适应 BROOK 数据。
+4. 了解时间窗口的选取。[机器学习-时间序列（3）滑动窗口](http://www.kongxiangbo.com/?p=199) BROOK 时间点之间的差值并不是一致的，那时间窗口如何选取？这属于非同步时间序列吗？（其实应该算非等间隔时间序列）
+5. 如果一个时间序列不是按相同用时间间隔得到的，那是不是就不能用来时间序列分析了？
+想到的方法 1. 人为的将数据处理为等间隔的
+[建议阅读](https://www.zhihu.com/question/25399280)
+6. 了解如何提取时间序列数据特征。[时序数据处理工具-时间序列数据特征提取TsFresh](https://blog.csdn.net/zhouchen1998/article/details/88773929)
+7. 神经网络是怎么进行分类操作的？一般的做法都是设置好网络架构，但不清楚这个分类逻辑。我现在做的感觉只是一个 driver identification 问题。
+8. 很多神经网络问题都是提前打好标签，那针对 BROOK 这种没有标签的数据改选择聚类还是分类算法？
+分类是事先定义好类别 ，类别数不变 。聚类则没有事先预定的类别，类别数不确定。
+
+### Reference
+
+<div id="refer-anchor-1"></div>
 
 <p>[1] <a href="https://scholar.google.com.hk/scholar?hl=zh-CN&amp;as_sdt=0%2C5&amp;q=Driving+style+analysis+using+data+mining+techniques&amp;btnG=" target="_blank" rel="noopener">Z. Constantinescu, C. Marinoiu, and M. Vladoiu, “Driving style analysis using data mining techniques,” International Journal of Computers Communications &amp; Control, vol. 5, no. 5, pp. 654–663, 2010</a></p>
 <div id="refer-anchor-2"></div>
@@ -591,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#时间序列"><span class="nav-number">1.0.1.</span> <span class="nav-text">时间序列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Preprocess"><span class="nav-number">2.</span> <span class="nav-text">Data Preprocess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-series-clustering"><span class="nav-number">3.</span> <span class="nav-text">Time series clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-K-means"><span class="nav-number">3.1.</span> <span class="nav-text">1.  K-means</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-最优-k-值的确定方法-手肘法"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1 最优 k 值的确定方法-手肘法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-最优-k-值的确定方法-轮廓系数法"><span class="nav-number">3.1.2.</span> <span class="nav-text">1.2 最优 k 值的确定方法-轮廓系数法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DL-classification-Methods"><span class="nav-number">4.</span> <span class="nav-text">DL classification Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CNN"><span class="nav-number">4.1.</span> <span class="nav-text">1. CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章"><span class="nav-number">4.1.1.</span> <span class="nav-text">建议阅读文章</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Seq2Seq"><span class="nav-number">4.2.</span> <span class="nav-text">2. Seq2Seq</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#建议阅读文章-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">建议阅读文章</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-Time-series-forecasting-with-deep-stacked-unidirectional-and-bidirectional-LSTMs"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">1. Time series forecasting with deep stacked unidirectional and bidirectional LSTMs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-Python机器学习笔记：利用-Keras-进行分类预测"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">2. Python机器学习笔记：利用 Keras 进行分类预测</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-seq2seq-的-keras-实现"><span class="nav-number">4.2.1.3.</span> <span class="nav-text">3. seq2seq 的 keras 实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-MultiLSTMRNN"><span class="nav-number">4.3.</span> <span class="nav-text">3. MultiLSTMRNN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems"><span class="nav-number">5.</span> <span class="nav-text">Problems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#时间序列"><span class="nav-number">1.0.1.</span> <span class="nav-text">时间序列</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Preprocess"><span class="nav-number">2.</span> <span class="nav-text">Data Preprocess</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-series-clustering"><span class="nav-number">3.</span> <span class="nav-text">Time series clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-K-means"><span class="nav-number">3.1.</span> <span class="nav-text">1.  K-means</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-最优-k-值的确定方法-手肘法"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1 最优 k 值的确定方法-手肘法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
