@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200831092709508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center)">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200831093031609.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70#pic_center)">
 <meta property="article:published_time" content="2020-08-04T04:06:35.491Z">
-<meta property="article:modified_time" content="2020-08-31T01:31:00.969Z">
+<meta property="article:modified_time" content="2020-08-31T07:29:02.782Z">
 <meta property="article:author" content="YU">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200806205525189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkzNzc1OQ==,size_16,color_FFFFFF,t_70">
@@ -329,6 +329,23 @@
 
 </div>
 </center>
+
+
+#### 2.  DBSCAN
+基于密度的方法的特点是不依赖于距离，而是依赖于密度，从而克服基于距离的算法只能发现“球形”聚簇的缺点。
+
+DBSCAN的核心思想是从某个核心点出发，不断向密度可达的区域扩张，从而得到一个包含核心点和边界点的最大化区域，区域中任意两点密度相连。
+
+以 Driver ID, Trip ID, Timespot 共同作为聚类标签，得到同一个 driver 不同时间段的行为分属不同的 cluster，那怎么确定最终这个 Driver 属于哪一类呢？
+
+
+#### 3.  Problem 
+1. PCA 降维的维度怎么确定
+2. 归一化对所有数据进行处理而不是一个序列内的数据，比如一个 driver 可能有 4 个 trip，传统的归一化操作是对这 4 个 trip 统一进行操作而不是分开操作。
+2. 如何判断聚类的效果
+3. 针对同一个 driver 不同时间段的信息的聚类结果，如何判断这个 driver 最终属于哪个 cluster
+4. DBSCAN 不是不依赖距离吗，那自定义距离函数的作用是什么
+
 
 
 ### DL classification Methods
