@@ -79,19 +79,22 @@
 
 
 
-<meta name="description" content="1. An Overview of Natural Language Processing1.1 Natural language understanding vs Natural language generation NLU systems focus on analysing natural language NLG systems focus on generating natural l">
+<meta name="description" content="1. Linguistics and NLP - a potted history1.1 Defintions Linguistics is the scientific study of language. It involves the analysis of language form, language meaning, and language in context. Linguists">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Human-AI Interaction, lecture 2">
-<meta property="og:url" content="http://yoursite.com/2020/08/04/Human-AI%20Interaction%20-%20Lecture%202/index.html">
+<meta property="og:title" content="Human-AI Interaction, lecture 3">
+<meta property="og:url" content="http://yoursite.com/2020/08/04/Human-AI%20Interaction%20-%20Lecture%203/index.html">
 <meta property="og:site_name" content="Yu&#39;s Blog">
-<meta property="og:description" content="1. An Overview of Natural Language Processing1.1 Natural language understanding vs Natural language generation NLU systems focus on analysing natural language NLG systems focus on generating natural l">
+<meta property="og:description" content="1. Linguistics and NLP - a potted history1.1 Defintions Linguistics is the scientific study of language. It involves the analysis of language form, language meaning, and language in context. Linguists">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.bmp.ovh/imgs/2020/10/7ad91e3fa177c4a3.png">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2020/10/66b28a876897e9e8.png">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2020/10/1de342e675a2e781.png">
+<meta property="og:image" content="https://i.bmp.ovh/imgs/2020/10/da7af81dfd14d796.png">
+<meta property="og:image" content="https://imgchr.com/i/BGVnxS">
 <meta property="article:published_time" content="2020-08-04T04:06:35.491Z">
-<meta property="article:modified_time" content="2020-10-29T02:58:32.939Z">
+<meta property="article:modified_time" content="2020-10-29T03:24:06.206Z">
 <meta property="article:author" content="YU">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.bmp.ovh/imgs/2020/10/7ad91e3fa177c4a3.png">
+<meta name="twitter:image" content="https://i.bmp.ovh/imgs/2020/10/66b28a876897e9e8.png">
 
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/08/04/Human-AI Interaction - Lecture 2/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/08/04/Human-AI Interaction - Lecture 3/"/>
 
 
 
 
 
-  <title>Human-AI Interaction, lecture 2 | Yu's Blog</title>
+  <title>Human-AI Interaction, lecture 3 | Yu's Blog</title>
   
 
 
@@ -227,7 +230,7 @@
     <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">Human-AI Interaction, lecture 2</h1>
+	<h1 class="post-title" itemprop="name headline">Human-AI Interaction, lecture 3</h1>
 
 
 
@@ -239,35 +242,45 @@
       <div class="post-body">
         
         
-          <h3 id="1-An-Overview-of-Natural-Language-Processing"><a href="#1-An-Overview-of-Natural-Language-Processing" class="headerlink" title="1. An Overview of Natural Language Processing"></a>1. An Overview of Natural Language Processing</h3><h4 id="1-1-Natural-language-understanding-vs-Natural-language-generation"><a href="#1-1-Natural-language-understanding-vs-Natural-language-generation" class="headerlink" title="1.1 Natural language understanding vs Natural language generation"></a>1.1 Natural language understanding vs Natural language generation</h4><ul>
-<li>NLU systems focus on analysing natural language</li>
-<li>NLG systems focus on generating natural language<ul>
-<li>From natural language (chatbots): human-generated text -&gt; response</li>
-<li>From structured data (financial reporting, weather prediction): structured database -&gt; description/narration of the data</li>
-<li>From media data(generating image captions): media -&gt; text（image caption, lipreading algorithms）</li>
+          <h3 id="1-Linguistics-and-NLP-a-potted-history"><a href="#1-Linguistics-and-NLP-a-potted-history" class="headerlink" title="1. Linguistics and NLP - a potted history"></a>1. Linguistics and NLP - a potted history</h3><h4 id="1-1-Defintions"><a href="#1-1-Defintions" class="headerlink" title="1.1 Defintions"></a>1.1 Defintions</h4><ul>
+<li><strong>Linguistics</strong> is the scientific <strong>study of language</strong>. It involves the analysis of language form, language meaning, and language in context. Linguists traditionally analyse human language by observing an interplay between sound and meaning.</li>
+<li><strong>Natural language processing</strong> is a subfield of linguistics, computer science, and artificial intelligence concerned with the <strong>interactions between computers and human language</strong>, in particular how to program computers to process and analyze large amounts of natural language data.</li>
 </ul>
-</li>
-</ul>
-<h4 id="1-2-Common-application-of-NLP"><a href="#1-2-Common-application-of-NLP" class="headerlink" title="1.2 Common application of NLP"></a>1.2 Common application of NLP</h4><ul>
-<li>Automated Summarisation: producing a summary of arbitary length for a piece of text</li>
-<li>Question Answering: Siri</li>
-<li>Information Retrieval: search engines, recommender systems</li>
-<li>Conversational User Interfaces: Chatbots</li>
-</ul>
-<h3 id="2-The-NLP-pipeline"><a href="#2-The-NLP-pipeline" class="headerlink" title="2. The NLP pipeline"></a>2. The NLP pipeline</h3><ul>
-<li>Each unit of interest that we analyse is a <strong>document</strong> <ul>
-<li>A book, parapraph, tweet can be a document</li>
-</ul>
-</li>
-<li>A collection of interest of documents is a <strong>corpus</strong><ul>
-<li>The Gutenberg project libray, any arbitrary subest can be a corpus</li>
-</ul>
-</li>
-</ul>
-<center>
-<img src="https://i.bmp.ovh/imgs/2020/10/7ad91e3fa177c4a3.png" width="90%" height="60%" div align="center"> 
+<h4 id="1-2-Semiotics-syntatic-semantic-and-pragmatic-dimension"><a href="#1-2-Semiotics-syntatic-semantic-and-pragmatic-dimension" class="headerlink" title="1.2 Semiotics - syntatic, semantic, and pragmatic dimension"></a>1.2 Semiotics - syntatic, semantic, and pragmatic dimension</h4><center>
+<img src="https://i.bmp.ovh/imgs/2020/10/66b28a876897e9e8.png" width="90%" height="60%" div align="center"> 
 </center>
 
+<h3 id="2-A-new-era-for-NLP"><a href="#2-A-new-era-for-NLP" class="headerlink" title="2. A new era for NLP"></a>2. A new era for NLP</h3><p>In this 2009 article, Halevy, Norvig, and Pereira state that “the biggest successes in natural-language-related machine learning have been <strong>statistical speech recognition</strong> and <strong>statistical machine translation</strong>.”<br></p>
+<h4 id="2-1-Syntactics-Syntax"><a href="#2-1-Syntactics-Syntax" class="headerlink" title="2.1 Syntactics/ Syntax"></a>2.1 Syntactics/ Syntax</h4><p>Combination of symbols (e.g., letters) into words, words into grammatical sentences, etc.</p>
+<center>
+<img src="https://i.bmp.ovh/imgs/2020/10/1de342e675a2e781.png" width="90%" height="60%" div align="center"> 
+</center>
+
+<h4 id="2-2-Syntax-and-morphology"><a href="#2-2-Syntax-and-morphology" class="headerlink" title="2.2 Syntax and morphology"></a>2.2 Syntax and morphology</h4><p>Syntax guides the <strong>morphology</strong> of words</p>
+<ul>
+<li>“send” is a morpheme (atomic unit)</li>
+<li>sends, sending, resend are combinations of morphemes</li>
+<li>In NLP, stemming and lemmatization are key pre-processing<br>methods to reduce words to their <strong>morphemes/lemmata</strong></li>
+</ul>
+<h4 id="2-3-Parts-of-speech"><a href="#2-3-Parts-of-speech" class="headerlink" title="2.3 Parts-of-speech"></a>2.3 Parts-of-speech</h4><p>Major lexical syntactic categories</p>
+<pre><code>- Noun, Verb, Adjective, Preposition…
+</code></pre><p>Minor catrgories</p>
+<pre><code>- Complementiser: that, if...; Determiner: the, a, those, that, some...; Degree intensifier: so, very...
+</code></pre><h4 id="2-4-Semantics"><a href="#2-4-Semantics" class="headerlink" title="2.4 Semantics"></a>2.4 Semantics</h4><p>Syntactic and lexical combination (morphology) to form meaning, E.g., for disambiguation of homonyms</p>
+<center>
+<img src="https://i.bmp.ovh/imgs/2020/10/da7af81dfd14d796.png" width="90%" height="60%" div align="center"> 
+</center>
+
+<h4 id="2-5-Pragmatics"><a href="#2-5-Pragmatics" class="headerlink" title="2.5 Pragmatics"></a>2.5 Pragmatics</h4><ul>
+<li>Language is full of situational, contextual references</li>
+<li>indexicals are indicative: here, this, there, that, I, now, he, she</li>
+<li>“Context tracking” in NLP is still a difficult problem<center>
+<img src="https://imgchr.com/i/BGVnxS" width="90%" height="60%" div align="center"> 
+</center>    
+
+
+</li>
+</ul>
 <h4 id="1-Tokenisation"><a href="#1-Tokenisation" class="headerlink" title="1. Tokenisation"></a>1. Tokenisation</h4><ul>
 <li>A document is made of tokens</li>
 <li>Tokens can be of arbitrary length</li>
@@ -403,7 +416,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-An-Overview-of-Natural-Language-Processing"><span class="nav-number">1.</span> <span class="nav-text">1. An Overview of Natural Language Processing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Natural-language-understanding-vs-Natural-language-generation"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Natural language understanding vs Natural language generation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Common-application-of-NLP"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Common application of NLP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-The-NLP-pipeline"><span class="nav-number">2.</span> <span class="nav-text">2. The NLP pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Tokenisation"><span class="nav-number">2.1.</span> <span class="nav-text">1. Tokenisation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Anontation"><span class="nav-number">2.2.</span> <span class="nav-text">2. Anontation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Word-standardisation-lemmatising-vs-stemming"><span class="nav-number">2.3.</span> <span class="nav-text">3. Word standardisation: lemmatising vs stemming</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Filtering-stop-words"><span class="nav-number">2.4.</span> <span class="nav-text">4. Filtering: stop-words</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-n-grams"><span class="nav-number">3.</span> <span class="nav-text">3. n-grams</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Linguistics-and-NLP-a-potted-history"><span class="nav-number">1.</span> <span class="nav-text">1. Linguistics and NLP - a potted history</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-Defintions"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Defintions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-Semiotics-syntatic-semantic-and-pragmatic-dimension"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Semiotics - syntatic, semantic, and pragmatic dimension</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-A-new-era-for-NLP"><span class="nav-number">2.</span> <span class="nav-text">2. A new era for NLP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Syntactics-Syntax"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Syntactics&#x2F; Syntax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-Syntax-and-morphology"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Syntax and morphology</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-Parts-of-speech"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Parts-of-speech</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-Semantics"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Semantics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-Pragmatics"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Pragmatics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Tokenisation"><span class="nav-number">2.6.</span> <span class="nav-text">1. Tokenisation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Anontation"><span class="nav-number">2.7.</span> <span class="nav-text">2. Anontation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Word-standardisation-lemmatising-vs-stemming"><span class="nav-number">2.8.</span> <span class="nav-text">3. Word standardisation: lemmatising vs stemming</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Filtering-stop-words"><span class="nav-number">2.9.</span> <span class="nav-text">4. Filtering: stop-words</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-n-grams"><span class="nav-number">3.</span> <span class="nav-text">3. n-grams</span></a></li></ol></div>
             
 
           </div>
