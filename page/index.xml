@@ -15,21 +15,19 @@
         <description></description>
         </item>
         <item>
-        <title>About Me</title>
-        <link>https://example.com/about-me/</link>
+        <title>About</title>
+        <link>https://example.com/about/</link>
         <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/about-me/</guid>
-        <description>&lt;h3 id=&#34;hi--im-yu-zhang&#34;&gt;Hi 👋, I&amp;rsquo;m Yu Zhang&lt;/h3&gt;
-&lt;h3 id=&#34;education&#34;&gt;Education&lt;/h3&gt;
+        <guid>https://example.com/about/</guid>
+        <description>&lt;h3 id=&#34;education&#34;&gt;Education&lt;/h3&gt;
 &lt;p&gt;🎓 University of Illinois Urbana-Champaign&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;p&gt;🎓 University of Nottingham&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2017.09 - 2021.08&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;BSc (Hons) in Computer Science with Artificial Intelligence&lt;/li&gt;
+&lt;li&gt;Master of Computer Science, 2022.08 - 2023.12&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;🎓 University of Nottingham&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BSc (Hons) in Computer Science with Artificial Intelligence, 2017.09 - 2021.08&lt;/li&gt;
 &lt;li&gt;Computer Science Mentor&lt;/li&gt;
 &lt;li&gt;Nottingham Advantage Award&lt;/li&gt;
 &lt;/ul&gt;
@@ -44,12 +42,11 @@
 &lt;li&gt;
 &lt;p&gt;💬 Discuss with me about &lt;strong&gt;machine learning, deep learning, transfer learning multimodal&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;📫 How to reach me &lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;mailto:zhang.yuanthony@gmail.com&#34; &gt;zhang.yuanthony@gmail.com&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;connect-with-me&#34;&gt;Connect with me:&lt;/h3&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;ul&gt;
+&lt;li&gt;📫 Email: &lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;mailto:zhang.yuanthony@gmail.com&#34; &gt;zhang.yuanthony@gmail.com&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         <item>
