@@ -6,18 +6,10 @@
         <description>Recent content in Pages on Yu Zhang</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Archives</title>
-        <link>https://example.com/archives/</link>
-        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
-        
-        <guid>https://example.com/archives/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Thu, 16 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>About</title>
         <link>https://example.com/about/</link>
-        <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
+        <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/about/</guid>
         <description>&lt;h3 id=&#34;education&#34;&gt;Education&lt;/h3&gt;
@@ -31,6 +23,23 @@
 &lt;li&gt;Computer Science Mentor&lt;/li&gt;
 &lt;li&gt;Nottingham Advantage Award&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;professional-experience&#34;&gt;Professional Experience&lt;/h3&gt;
+&lt;p&gt;💼 Langboat&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Machine Learning Enginer Intern, 2022.02 - 2022.06&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;💼 Sinovation Ventures&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Machine Learning Enginer Intern, 2021.10 = 2022.01&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;💼 NVIDIA Joint-Lab on Mixed Reality&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Software Developer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;💼 Packt&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Software Developer in coop project&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;personal-introduction&#34;&gt;Personal Introduction&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -43,11 +52,19 @@
 &lt;p&gt;💬 Discuss with me about &lt;strong&gt;machine learning, deep learning, transfer learning multimodal&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;connect-with-me&#34;&gt;Connect with me:&lt;/h3&gt;
+&lt;h3 id=&#34;connect-with-me&#34;&gt;Connect with me&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;📫 Email: &lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;mailto:zhang.yuanthony@gmail.com&#34; &gt;zhang.yuanthony@gmail.com&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+        </item>
+        <item>
+        <title>Archives</title>
+        <link>https://example.com/archives/</link>
+        <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/archives/</guid>
+        <description></description>
         </item>
         <item>
         <title>Links</title>
