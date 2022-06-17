@@ -21,6 +21,8 @@
 以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：
 准备原始文本数据 将原始文本转化成 BERT 相容的输入格式 利用 BERT 基于微调的方式建立下游任务模型 训练下游任务模型 对新样本做推论 那 BERT 模型该怎么用呢，thanks to 开源精神，BERT 的作者们已经开源训练好的模型，我们只需要使用 TensorFlow or PyTorch 将模型导入即可。
 1 2 3 4 5 6 7 8 9 10 import torch from transformers import BertTokenizer from IPython.display import clear_output PRETRAINED_MODEL_NAME = &amp;#34;bert-base-chinese&amp;#34; # 指定简繁中文 BERT-BASE 预训练模型 # 取得此预训练模型所使用的 tokenizer tokenizer = BertTokenizer.">
+    <link rel="shortcut icon" href="/imgs/favicon.ico" />
+
     </head>
     <body class="
     article-page
