@@ -55,7 +55,7 @@
 &lt;p&gt;这些模型的区别主要在于：&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;接下来我就简单的介绍一个情感分类任务来帮大家联系 BERT 的 fine tune&lt;/p&gt;
-&lt;h3 id=&#34;a-name准备原始文本数据1准备原始文本数据a&#34;&gt;&lt;!-- raw HTML omitted --&gt;1.准备原始文本数据&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;a-name准备原始文本数据准备原始文本数据a&#34;&gt;&lt;!-- raw HTML omitted --&gt;准备原始文本数据&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
 &lt;p&gt;首先加载我们需要用到的库：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -150,7 +150,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6919	a deliciously nonsensical comedy about a city ...	&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;a-name将原始文本转化成-bert-相容的输入格式2-将原始文本转化成-bert-相容的输入格式a&#34;&gt;&lt;!-- raw HTML omitted --&gt;2. 将原始文本转化成 BERT 相容的输入格式&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;a-name将原始文本转化成-bert-相容的输入格式将原始文本转化成-bert-相容的输入格式a&#34;&gt;&lt;!-- raw HTML omitted --&gt;将原始文本转化成 BERT 相容的输入格式&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
 &lt;p&gt;我们对原来的数据集进行一些改造，分成 batch_size 为 64 大小的数据集，以便模型进行批量梯度下降&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -178,7 +178,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;batch_train_targets&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;train_targets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;a-name利用-bert-基于微调的方式建立下游任务模型3-利用-bert-基于微调的方式建立下游任务模型a&#34;&gt;&lt;!-- raw HTML omitted --&gt;3. 利用 BERT 基于微调的方式建立下游任务模型&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;a-name利用-bert-基于微调的方式建立下游任务模型利用-bert-基于微调的方式建立下游任务模型a&#34;&gt;&lt;!-- raw HTML omitted --&gt;利用 BERT 基于微调的方式建立下游任务模型&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
 &lt;p&gt;在这里我们采取 fine-tuned 使得 Bert 与线性层一起参与训练，反向传播会更新二者的参数，使得 Bert 模型更适合这个分类任务。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -220,7 +220,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;linear_output&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;a-name训练下游任务模型4训练下游任务模型a&#34;&gt;&lt;!-- raw HTML omitted --&gt;4.训练下游任务模型&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;a-name训练下游任务模型训练下游任务模型a&#34;&gt;&lt;!-- raw HTML omitted --&gt;训练下游任务模型&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -273,7 +273,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;print_avg_loss&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;a-name对新样本做推论5对新样本做推论a&#34;&gt;&lt;!-- raw HTML omitted --&gt;5.对新样本做推论&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;a-name对新样本做推论对新样本做推论a&#34;&gt;&lt;!-- raw HTML omitted --&gt;对新样本做推论&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1

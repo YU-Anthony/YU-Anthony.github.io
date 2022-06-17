@@ -82,10 +82,10 @@
                 href="https://example.com/page/"
                 />
   </url><url>
-    <loc>https://example.com/archives/</loc>
+    <loc>https://example.com/blogs/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/links/</loc>
+    <loc>https://example.com/resources/</loc>
   </url><url>
     <loc>https://example.com/search/</loc>
   </url>
