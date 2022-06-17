@@ -15,7 +15,7 @@
 1 2 3 4 5 6 7 8 9 10 import torch from transformers import BertTokenizer from IPython.display import clear_output PRETRAINED_MODEL_NAME = &amp;#34;bert-base-chinese&amp;#34; # 指定简繁中文 BERT-BASE 预训练模型 # 取得此预训练模型所使用的 tokenizer tokenizer = BertTokenizer.'>
 <meta property='og:url' content='https://example.com/p/bert-language-model-for-context-learning/'>
 <meta property='og:site_name' content='Yu Zhang'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='NLP' /><meta property='article:tag' content='Machine Learning' /><meta property='article:published_time' content='2022-06-16T23:30:26&#43;08:00'/><meta property='article:modified_time' content='2022-06-16T23:30:26&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='NLP' /><meta property='article:tag' content='ML' /><meta property='article:published_time' content='2022-06-16T23:30:26&#43;08:00'/><meta property='article:modified_time' content='2022-06-16T23:30:26&#43;08:00'/>
 <meta name="twitter:title" content="BERT: Language Model for Context Learning">
 <meta name="twitter:description" content="BERT 全名为 Bidrectional Encoder Representations from Transformers, 是 Google 以无监督的方式利用大量无标注文本生成的语言代表模型，其架构为 Transforer 中的 Encoder.
 以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：
@@ -548,7 +548,7 @@
 </span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="n">linear_output</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="a-name训练下游任务模型训练下游任务模型a"><!-- raw HTML omitted -->训练下游任务模型<!-- raw HTML omitted --></h3>
+</div><h3 id="a-name训练下游任务模型4训练下游任务模型a"><!-- raw HTML omitted -->4.训练下游任务模型<!-- raw HTML omitted --></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -661,7 +661,7 @@
         
             <a href="/tags/nlp/">NLP</a>
         
-            <a href="/tags/machine-learning/">Machine Learning</a>
+            <a href="/tags/ml/">ML</a>
         
     </section>
 
@@ -855,7 +855,7 @@
         <li><a href="#a-name准备原始文本数据准备原始文本数据a"><!-- raw HTML omitted -->准备原始文本数据<!-- raw HTML omitted --></a></li>
         <li><a href="#a-name将原始文本转化成-bert-相容的输入格式将原始文本转化成-bert-相容的输入格式a"><!-- raw HTML omitted -->将原始文本转化成 BERT 相容的输入格式<!-- raw HTML omitted --></a></li>
         <li><a href="#a-name利用-bert-基于微调的方式建立下游任务模型利用-bert-基于微调的方式建立下游任务模型a"><!-- raw HTML omitted -->利用 BERT 基于微调的方式建立下游任务模型<!-- raw HTML omitted --></a></li>
-        <li><a href="#a-name训练下游任务模型训练下游任务模型a"><!-- raw HTML omitted -->训练下游任务模型<!-- raw HTML omitted --></a></li>
+        <li><a href="#a-name训练下游任务模型4训练下游任务模型a"><!-- raw HTML omitted -->4.训练下游任务模型<!-- raw HTML omitted --></a></li>
         <li><a href="#a-name对新样本做推论对新样本做推论a"><!-- raw HTML omitted -->对新样本做推论<!-- raw HTML omitted --></a></li>
       </ol>
     </li>
