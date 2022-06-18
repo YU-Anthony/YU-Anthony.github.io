@@ -13,7 +13,16 @@
         
         <guid>https://example.com/p/bert-language-model-for-context-learning/</guid>
         <description>&lt;p&gt;&lt;strong&gt;BERT&lt;/strong&gt;  全名为 &lt;strong&gt;B&lt;/strong&gt;idrectional &lt;strong&gt;E&lt;/strong&gt;ncoder &lt;strong&gt;R&lt;/strong&gt;epresentations from &lt;strong&gt;T&lt;/strong&gt;ransformers, 是 Google 以无监督的方式利用大量无标注文本生成的语言代表模型，其架构为 Transforer 中的 Encoder.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;center&gt;
+    &lt;img style=&#34;border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);&#34; 
+    src=&#34;https://leemeng.tw/images/bert/bert-intro.jpg&#34;&gt;
+    &lt;br&gt;
+    &lt;div style=&#34;color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+                padding: 2px;&#34;&gt;BERT 是 Transformer 中的 Encoder, 只是有很多层 (&lt;a href=&#34;https://www.youtube.com/watch?list=PLJV_el3uVTsOK_ZK5L0Iv_EQoL1JefRL4&amp;v=UYPa347-DdE&amp;feature=youtu.be&#34;&gt;图片来源&lt;/a&gt;]&lt;/div&gt;
+&lt;/center&gt;
 &lt;p&gt;以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;准备原始文本数据&lt;/li&gt;
@@ -51,11 +60,27 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;上述代码选用了有 12 层 layers 的 BERT-base, 当然你还可以在 &lt;a class=&#34;link&#34; href=&#34;https://github.com/huggingface/transformers/blob/master/hubconf.py&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugging Face 的 repository&lt;/a&gt; 找到更多关于 BERT 的预训练模型：&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+ &lt;ul&gt;
+   &lt;li&gt;bert-base-chinese&lt;/li&gt;
+   &lt;li&gt;bert-base-uncased&lt;/li&gt;
+   &lt;li&gt;bert-base-cased&lt;/li&gt;
+   &lt;li&gt;bert-base-german-cased&lt;/li&gt;
+   &lt;li&gt;bert-base-multilingual-uncased&lt;/li&gt;
+   &lt;li&gt;bert-base-multilingual-cased&lt;/li&gt;
+   &lt;li&gt;bert-large-cased&lt;/li&gt;
+   &lt;li&gt;bert-large-uncased&lt;/li&gt;
+   &lt;li&gt;bert-large-uncased-whole-word-masking&lt;/li&gt;
+   &lt;li&gt;bert-large-cased-whole-word-masking&lt;/li&gt;
+ &lt;/ul&gt;
 &lt;p&gt;这些模型的区别主要在于：&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
+ &lt;ul&gt;
+   &lt;li&gt;预训练步骤使用的文本语言&lt;/li&gt;
+   &lt;li&gt;有无分大小写&lt;/li&gt;
+   &lt;li&gt;模型层数&lt;/li&gt;
+   &lt;li&gt;预训练时遮住 wordpieces 或是整个 word&lt;/li&gt;
+ &lt;/ul&gt;
 &lt;p&gt;接下来我就简单的介绍一个情感分类任务来帮大家联系 BERT 的 fine tune&lt;/p&gt;
-&lt;h3 id=&#34;a-name准备原始文本数据准备原始文本数据a&#34;&gt;&lt;!-- raw HTML omitted --&gt;准备原始文本数据&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;a-name准备原始文本数据准备原始文本数据a&#34;&gt;&lt;a name=&#34;准备原始文本数据&#34;&gt;准备原始文本数据&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;首先加载我们需要用到的库：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -150,7 +175,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6919	a deliciously nonsensical comedy about a city ...	&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;a-name将原始文本转化成-bert-相容的输入格式将原始文本转化成-bert-相容的输入格式a&#34;&gt;&lt;!-- raw HTML omitted --&gt;将原始文本转化成 BERT 相容的输入格式&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;a-name将原始文本转化成-bert-相容的输入格式将原始文本转化成-bert-相容的输入格式a&#34;&gt;&lt;a name=&#34;将原始文本转化成 BERT 相容的输入格式&#34;&gt;将原始文本转化成 BERT 相容的输入格式&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;我们对原来的数据集进行一些改造，分成 batch_size 为 64 大小的数据集，以便模型进行批量梯度下降&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -178,7 +203,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;batch_train_targets&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;train_targets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;batch_size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;a-name利用-bert-基于微调的方式建立下游任务模型利用-bert-基于微调的方式建立下游任务模型a&#34;&gt;&lt;!-- raw HTML omitted --&gt;利用 BERT 基于微调的方式建立下游任务模型&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;a-name利用-bert-基于微调的方式建立下游任务模型利用-bert-基于微调的方式建立下游任务模型a&#34;&gt;&lt;a name=&#34;利用 BERT 基于微调的方式建立下游任务模型&#34;&gt;利用 BERT 基于微调的方式建立下游任务模型&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;在这里我们采取 fine-tuned 使得 Bert 与线性层一起参与训练，反向传播会更新二者的参数，使得 Bert 模型更适合这个分类任务。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -220,7 +245,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;linear_output&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;a-name训练下游任务模型4训练下游任务模型a&#34;&gt;&lt;!-- raw HTML omitted --&gt;4.训练下游任务模型&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;a-name训练下游任务模型4训练下游任务模型a&#34;&gt;&lt;a name=&#34;训练下游任务模型&#34;&gt;4.训练下游任务模型&lt;/a&gt;&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -273,7 +298,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;print_avg_loss&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;a-name对新样本做推论对新样本做推论a&#34;&gt;&lt;!-- raw HTML omitted --&gt;对新样本做推论&lt;!-- raw HTML omitted --&gt;&lt;/h3&gt;
+&lt;/div&gt;&lt;h3 id=&#34;a-name对新样本做推论对新样本做推论a&#34;&gt;&lt;a name=&#34;对新样本做推论&#34;&gt;对新样本做推论&lt;/a&gt;&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1

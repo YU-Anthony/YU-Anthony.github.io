@@ -2,11 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.com/p/bert-language-model-for-context-learning/</loc>
-    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
+    <loc>https://example.com/tags/ai/</loc>
+    <lastmod>2022-06-17T22:56:59+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/categories/artificial-intelligence/</loc>
+    <lastmod>2022-06-17T22:56:59+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/p/audio-caption/</loc>
+    <lastmod>2022-06-17T22:56:59+08:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/</loc>
-    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
+    <lastmod>2022-06-17T22:56:59+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -19,19 +25,13 @@
                 />
   </url><url>
     <loc>https://example.com/tags/ml/</loc>
-    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
-  </url><url>
-    <loc>https://example.com/categories/natural-language-processing/</loc>
-    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
-  </url><url>
-    <loc>https://example.com/tags/nlp/</loc>
-    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
+    <lastmod>2022-06-17T22:56:59+08:00</lastmod>
   </url><url>
     <loc>https://example.com/post/</loc>
-    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
+    <lastmod>2022-06-17T22:56:59+08:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/</loc>
-    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
+    <lastmod>2022-06-17T22:56:59+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -44,7 +44,7 @@
                 />
   </url><url>
     <loc>https://example.com/</loc>
-    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
+    <lastmod>2022-06-17T22:56:59+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -55,6 +55,15 @@
                 hreflang="en"
                 href="https://example.com/"
                 />
+  </url><url>
+    <loc>https://example.com/p/bert-language-model-for-context-learning/</loc>
+    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/categories/natural-language-processing/</loc>
+    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/nlp/</loc>
+    <lastmod>2022-06-16T23:30:26+08:00</lastmod>
   </url><url>
     <loc>https://example.com/about/</loc>
     <lastmod>2022-06-16T00:00:00+00:00</lastmod>
@@ -84,8 +93,6 @@
   </url><url>
     <loc>https://example.com/blogs/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://example.com/categories/artificial-intelligence/</loc>
   </url><url>
     <loc>https://example.com/resources/</loc>
   </url><url>

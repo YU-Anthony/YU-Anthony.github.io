@@ -2,25 +2,25 @@
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='BERT 全名为 Bidrectional Encoder Representations from Transformers, 是 Google 以无监督的方式利用大量无标注文本生成的语言代表模型，其架构为 Transforer 中的 Encoder.
-以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：
+BERT 是 Transformer 中的 Encoder, 只是有很多层 (图片来源] 以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：
 准备原始文本数据 将原始文本转化成 BERT 相容的输入格式 利用 BERT 基于微调的方式建立下游任务模型 训练下游任务模型 对新样本做推论 那 BERT 模型该怎么用呢，thanks to 开源精神，BERT 的作者们已经开源训练好的模型，我们只需要使用 TensorFlow or PyTorch 将模型导入即可。
-1 2 3 4 5 6 7 8 9 10 import torch from transformers import BertTokenizer from IPython.display import clear_output PRETRAINED_MODEL_NAME = &amp;#34;bert-base-chinese&amp;#34; # 指定简繁中文 BERT-BASE 预训练模型 # 取得此预训练模型所使用的 tokenizer tokenizer = BertTokenizer.'><title>BERT: Language Model for Context Learning</title>
+1 2 3 4 5 6 7 8 9 10 import torch from transformers import BertTokenizer from IPython.'><title>BERT: Language Model for Context Learning</title>
 
 <link rel='canonical' href='https://example.com/p/bert-language-model-for-context-learning/'>
 
 <link rel="stylesheet" href="/scss/style.min.783c98a838608e67b3823eb6740265ee3b517b0707a113b9de09e105942a3045.css"><meta property='og:title' content='BERT: Language Model for Context Learning'>
 <meta property='og:description' content='BERT 全名为 Bidrectional Encoder Representations from Transformers, 是 Google 以无监督的方式利用大量无标注文本生成的语言代表模型，其架构为 Transforer 中的 Encoder.
-以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：
+BERT 是 Transformer 中的 Encoder, 只是有很多层 (图片来源] 以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：
 准备原始文本数据 将原始文本转化成 BERT 相容的输入格式 利用 BERT 基于微调的方式建立下游任务模型 训练下游任务模型 对新样本做推论 那 BERT 模型该怎么用呢，thanks to 开源精神，BERT 的作者们已经开源训练好的模型，我们只需要使用 TensorFlow or PyTorch 将模型导入即可。
-1 2 3 4 5 6 7 8 9 10 import torch from transformers import BertTokenizer from IPython.display import clear_output PRETRAINED_MODEL_NAME = &amp;#34;bert-base-chinese&amp;#34; # 指定简繁中文 BERT-BASE 预训练模型 # 取得此预训练模型所使用的 tokenizer tokenizer = BertTokenizer.'>
+1 2 3 4 5 6 7 8 9 10 import torch from transformers import BertTokenizer from IPython.'>
 <meta property='og:url' content='https://example.com/p/bert-language-model-for-context-learning/'>
 <meta property='og:site_name' content='Yu Zhang'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='NLP' /><meta property='article:tag' content='ML' /><meta property='article:published_time' content='2022-06-16T23:30:26&#43;08:00'/><meta property='article:modified_time' content='2022-06-16T23:30:26&#43;08:00'/>
 <meta name="twitter:title" content="BERT: Language Model for Context Learning">
 <meta name="twitter:description" content="BERT 全名为 Bidrectional Encoder Representations from Transformers, 是 Google 以无监督的方式利用大量无标注文本生成的语言代表模型，其架构为 Transforer 中的 Encoder.
-以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：
+BERT 是 Transformer 中的 Encoder, 只是有很多层 (图片来源] 以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：
 准备原始文本数据 将原始文本转化成 BERT 相容的输入格式 利用 BERT 基于微调的方式建立下游任务模型 训练下游任务模型 对新样本做推论 那 BERT 模型该怎么用呢，thanks to 开源精神，BERT 的作者们已经开源训练好的模型，我们只需要使用 TensorFlow or PyTorch 将模型导入即可。
-1 2 3 4 5 6 7 8 9 10 import torch from transformers import BertTokenizer from IPython.display import clear_output PRETRAINED_MODEL_NAME = &amp;#34;bert-base-chinese&amp;#34; # 指定简繁中文 BERT-BASE 预训练模型 # 取得此预训练模型所使用的 tokenizer tokenizer = BertTokenizer.">
+1 2 3 4 5 6 7 8 9 10 import torch from transformers import BertTokenizer from IPython.">
     <link rel="shortcut icon" href="/imgs/favicon.ico" />
 
     </head>
@@ -341,7 +341,16 @@
     
     
     <p><strong>BERT</strong>  全名为 <strong>B</strong>idrectional <strong>E</strong>ncoder <strong>R</strong>epresentations from <strong>T</strong>ransformers, 是 Google 以无监督的方式利用大量无标注文本生成的语言代表模型，其架构为 Transforer 中的 Encoder.</p>
-<!-- raw HTML omitted -->
+<center>
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" 
+    src="https://leemeng.tw/images/bert/bert-intro.jpg">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+                padding: 2px;">BERT 是 Transformer 中的 Encoder, 只是有很多层 (<a href="https://www.youtube.com/watch?list=PLJV_el3uVTsOK_ZK5L0Iv_EQoL1JefRL4&v=UYPa347-DdE&feature=youtu.be">图片来源</a>]</div>
+</center>
 <p>以前在处理不同的 NLP 任务通常需要不同的 Language Model (LM)，而设计这些模型并测试其性能需要不少的人力，时间以及计算资源。 BERT 模型就在这种背景下应运而生，我们可以将该模型套用到多个 NLP 任务，再以此为基础 fine tune 多个下游任务。fine tune BERT 来解决下游任务有5个简单的步骤：</p>
 <ol>
 <li>准备原始文本数据</li>
@@ -379,11 +388,27 @@
 </div>
 </div><p>上述代码选用了有 12 层 layers 的 BERT-base, 当然你还可以在 <a class="link" href="https://github.com/huggingface/transformers/blob/master/hubconf.py"  target="_blank" rel="noopener"
     >Hugging Face 的 repository</a> 找到更多关于 BERT 的预训练模型：</p>
-<!-- raw HTML omitted -->
+ <ul>
+   <li>bert-base-chinese</li>
+   <li>bert-base-uncased</li>
+   <li>bert-base-cased</li>
+   <li>bert-base-german-cased</li>
+   <li>bert-base-multilingual-uncased</li>
+   <li>bert-base-multilingual-cased</li>
+   <li>bert-large-cased</li>
+   <li>bert-large-uncased</li>
+   <li>bert-large-uncased-whole-word-masking</li>
+   <li>bert-large-cased-whole-word-masking</li>
+ </ul>
 <p>这些模型的区别主要在于：</p>
-<!-- raw HTML omitted -->
+ <ul>
+   <li>预训练步骤使用的文本语言</li>
+   <li>有无分大小写</li>
+   <li>模型层数</li>
+   <li>预训练时遮住 wordpieces 或是整个 word</li>
+ </ul>
 <p>接下来我就简单的介绍一个情感分类任务来帮大家联系 BERT 的 fine tune</p>
-<h3 id="a-name准备原始文本数据准备原始文本数据a"><!-- raw HTML omitted -->准备原始文本数据<!-- raw HTML omitted --></h3>
+<h3 id="a-name准备原始文本数据准备原始文本数据a"><a name="准备原始文本数据">准备原始文本数据</a></h3>
 <p>首先加载我们需要用到的库：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -478,7 +503,7 @@
 </span></span><span class="line"><span class="cl">6919	a deliciously nonsensical comedy about a city ...	<span class="m">1</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="a-name将原始文本转化成-bert-相容的输入格式将原始文本转化成-bert-相容的输入格式a"><!-- raw HTML omitted -->将原始文本转化成 BERT 相容的输入格式<!-- raw HTML omitted --></h3>
+</div><h3 id="a-name将原始文本转化成-bert-相容的输入格式将原始文本转化成-bert-相容的输入格式a"><a name="将原始文本转化成 BERT 相容的输入格式">将原始文本转化成 BERT 相容的输入格式</a></h3>
 <p>我们对原来的数据集进行一些改造，分成 batch_size 为 64 大小的数据集，以便模型进行批量梯度下降</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -506,7 +531,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">batch_train_targets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_targets</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">batch_size</span> <span class="p">:</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">batch_size</span><span class="p">])</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="a-name利用-bert-基于微调的方式建立下游任务模型利用-bert-基于微调的方式建立下游任务模型a"><!-- raw HTML omitted -->利用 BERT 基于微调的方式建立下游任务模型<!-- raw HTML omitted --></h3>
+</div><h3 id="a-name利用-bert-基于微调的方式建立下游任务模型利用-bert-基于微调的方式建立下游任务模型a"><a name="利用 BERT 基于微调的方式建立下游任务模型">利用 BERT 基于微调的方式建立下游任务模型</a></h3>
 <p>在这里我们采取 fine-tuned 使得 Bert 与线性层一起参与训练，反向传播会更新二者的参数，使得 Bert 模型更适合这个分类任务。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -548,7 +573,7 @@
 </span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="n">linear_output</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="a-name训练下游任务模型4训练下游任务模型a"><!-- raw HTML omitted -->4.训练下游任务模型<!-- raw HTML omitted --></h3>
+</div><h3 id="a-name训练下游任务模型4训练下游任务模型a"><a name="训练下游任务模型">4.训练下游任务模型</a></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -601,7 +626,7 @@
 </span></span><span class="line"><span class="cl">            <span class="n">print_avg_loss</span> <span class="o">=</span> <span class="mi">0</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="a-name对新样本做推论对新样本做推论a"><!-- raw HTML omitted -->对新样本做推论<!-- raw HTML omitted --></h3>
+</div><h3 id="a-name对新样本做推论对新样本做推论a"><a name="对新样本做推论">对新样本做推论</a></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -852,11 +877,11 @@
   <ol>
     <li>
       <ol>
-        <li><a href="#a-name准备原始文本数据准备原始文本数据a"><!-- raw HTML omitted -->准备原始文本数据<!-- raw HTML omitted --></a></li>
-        <li><a href="#a-name将原始文本转化成-bert-相容的输入格式将原始文本转化成-bert-相容的输入格式a"><!-- raw HTML omitted -->将原始文本转化成 BERT 相容的输入格式<!-- raw HTML omitted --></a></li>
-        <li><a href="#a-name利用-bert-基于微调的方式建立下游任务模型利用-bert-基于微调的方式建立下游任务模型a"><!-- raw HTML omitted -->利用 BERT 基于微调的方式建立下游任务模型<!-- raw HTML omitted --></a></li>
-        <li><a href="#a-name训练下游任务模型4训练下游任务模型a"><!-- raw HTML omitted -->4.训练下游任务模型<!-- raw HTML omitted --></a></li>
-        <li><a href="#a-name对新样本做推论对新样本做推论a"><!-- raw HTML omitted -->对新样本做推论<!-- raw HTML omitted --></a></li>
+        <li><a href="#a-name准备原始文本数据准备原始文本数据a"><a name="准备原始文本数据">准备原始文本数据</a></a></li>
+        <li><a href="#a-name将原始文本转化成-bert-相容的输入格式将原始文本转化成-bert-相容的输入格式a"><a name="将原始文本转化成 BERT 相容的输入格式">将原始文本转化成 BERT 相容的输入格式</a></a></li>
+        <li><a href="#a-name利用-bert-基于微调的方式建立下游任务模型利用-bert-基于微调的方式建立下游任务模型a"><a name="利用 BERT 基于微调的方式建立下游任务模型">利用 BERT 基于微调的方式建立下游任务模型</a></a></li>
+        <li><a href="#a-name训练下游任务模型4训练下游任务模型a"><a name="训练下游任务模型">4.训练下游任务模型</a></a></li>
+        <li><a href="#a-name对新样本做推论对新样本做推论a"><a name="对新样本做推论">对新样本做推论</a></a></li>
       </ol>
     </li>
   </ol>
