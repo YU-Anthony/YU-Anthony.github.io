@@ -620,22 +620,154 @@ Table 2 将本次实验中模型的最优结果与 DCASE 2020 T6 提供的 basli
         
         <guid>https://example.com/resources/</guid>
         <description>&lt;p&gt;Here is the collection of resources that I think may be helpful.&lt;/p&gt;
-&lt;!-- To use this feature, add `links` section to frontmatter.
-
-This page&#39;s frontmatter:
-
-```yaml
-links:
-  - title: GitHub
-    description: GitHub is the world&#39;s largest software development platform.
-    website: https://github.com
-    image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
-  - title: TypeScript
-    description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-    website: https://www.typescriptlang.org
-    image: ts-logo-128.jpg
-``` --&gt;
-&lt;!-- `image` field accepts both local and external images. --&gt;</description>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&#34;zh-cn&#34;&gt;
+&lt;style type=&#34;text/css&#34;&gt;
+ul {
+    padding: 0;
+}
+li {
+    list-style: none;
+}
+a:hover,a:active,a:focus {
+    text-decoration: none;
+}
+i.icon,i.fa {
+    margin-right: 6px
+}
+/* .col, .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    padding: 0px 5px;
+} */
+#content {
+    /* position: absolute; */
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+#content &gt; .Off-left-menu {
+    display: none;
+}
+#content &gt; div.center-main {
+    margin: 0 auto;
+}
+#content .content-box {
+    padding-top: 51px
+}
+.item {
+    width: 100%;
+}
+.item &gt; .container-fluid {
+    padding-top: 0;
+    margin-top: 0;
+}
+.item &gt; .container-fluid .row {
+    padding: 10px 5px;
+}
+.item-tit &gt; strong &gt; i {
+    margin-right: 5px;
+    font-size: 18px;
+}
+.card-link {
+    display: block;
+    padding: 10px 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    /* background: #fff; */
+    transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+ /* Firefox 4 */
+    -webkit-transition: all 0.2s ease-out;
+ /* Safari Chrome */
+    -o-transition: all 0.2s ease-out;
+ /* Opera */
+}
+.card-link:hover {
+    transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+   /* IE 9 */
+    -moz-transform: translateY(-5px);
+   /* Firefox */
+    -webkit-transform: translateY(-5px);
+ /* Safari  Chrome */
+    -o-transform: translateY(-5px);
+   /* Opera */
+    box-shadow: 4px 4px 10px rgba(204, 204, 204, 0.5);
+    -moz-box-shadow: 4px 4px 10px rgba(204, 204, 204, 0.5);
+ /* Firefox */
+}
+.card-tit {
+    height: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+.card-tit img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.card-desc {
+    color: gray;
+    font-size: 12px;
+    padding-top: 10px;
+    height: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.content-box .list-box {
+    /* background: #FFF; */
+    padding: 20px 10px 0px 10px;
+    margin: 0;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body id=&#34;nav_body&#34;&gt;
+&lt;div id=&#34;content&#34;&gt;
+    &lt;!--内容--&gt;
+    &lt;div class=&#34;main&#34;&gt;
+        &lt;div class=&#34;container content-box&#34;&gt;
+            &lt;!--搜索栏--&gt;
+            &lt;!--导航分类范例1，请根据自己的需求进行修改--&gt;
+            &lt;section class=&#34;item card-box&#34; id=&#34;row-1&#34;&gt;
+            &lt;div class=&#34;container-fluid&#34;&gt;
+                &lt;div class=&#34;row&#34;&gt;
+                    &lt;div class=&#34;item-tit&#34;&gt;
+                        &lt;strong&gt;Job &amp; Intership&lt;/strong&gt;
+                    &lt;/div&gt;
+                    &lt;!--获取内容列表--&gt;
+                    &lt;div class=&#34;clearfix two-list-box&#34;&gt;
+                        &lt;div class=&#34;col-md-3 col-sm-4 col-xs-6&#34;&gt;
+                            &lt;a href=&#34;https://github.com/pittcsc/Summer2023-Internships&#34; class=&#34;card-link&#34; target=&#34;_blank&#34;&gt;
+                            &lt;div class=&#34;card-tit&#34;&gt;2023 Summer Intership&lt;/div&gt;
+                            &lt;div class=&#34;card-desc&#34;&gt;Use this repo to share and keep track of software, tech, CS, PM, quant internships for Summer 2023. &lt;/div&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&#34;col-md-3 col-sm-4 col-xs-6&#34;&gt;
+                            &lt;a href=&#34;https://github.com/coderQuad/New-Grad-Positions-2023&#34; class=&#34;card-link&#34; target=&#34;_blank&#34;&gt;
+                            &lt;div class=&#34;card-tit&#34;&gt;2023 New Grad&lt;/div&gt;
+                            &lt;div class=&#34;card-desc&#34;&gt;A collection of New Grad full time roles in SWE, Quant, and PM.&lt;/div&gt;
+                            &lt;/a&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;/section&gt;
+        &lt;/div&gt;
+        &lt;!--内容区域--&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</description>
         </item>
         <item>
         <title>Search</title>
