@@ -12,7 +12,11 @@
         <pubDate>Thu, 16 Jun 2022 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/about/</guid>
-        <description>&lt;h3 id=&#34;education&#34;&gt;Education&lt;/h3&gt;
+        <description>&lt;h2 id=&#34;research-interest&#34;&gt;Research Interest&lt;/h2&gt;
+&lt;p&gt;My research mainly focuses on the development of intelligent platforms for neural network education. As artificial intelligence (AI) continues to revolutionize various fields, it is crucial to equip students and professionals with the skills to harness the power of neural networks.&lt;/p&gt;
+&lt;p&gt;My current approach to this research involves utilizing a drag-and-drop interface that allows students to build neural network architectures on their own. This approach is aimed at providing a more interactive and engaging way for students to learn about neural networks, and to help them gain a deeper understanding of the underlying principles and concepts.&lt;/p&gt;
+&lt;p&gt;In the future, I plan to further explore the potential of intelligent systems in education, particularly in the areas of personalized learning and adaptive assessment. By leveraging the latest advances in AI and machine learning, I believe we can create educational systems that are more engaging, effective, and accessible for students of all backgrounds and abilities.&lt;/p&gt;
+&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
 &lt;p&gt;🎓 University of Illinois Urbana-Champaign&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Master of Computer Science, 2022.08 - 2023.12&lt;/li&gt;
@@ -23,36 +27,25 @@
 &lt;li&gt;Computer Science Mentor&lt;/li&gt;
 &lt;li&gt;Nottingham Advantage Award&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;professional-experience&#34;&gt;Professional Experience&lt;/h3&gt;
-&lt;p&gt;💼 Langboat&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Machine Learning Enginer Intern, 2022.02 - 2022.06&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;💼 Sinovation Ventures&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Machine Learning Enginer Intern, 2021.10 = 2022.01&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;💼 NVIDIA Joint-Lab on Mixed Reality&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Software Developer&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;💼 Packt&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Software Developer in coop project&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;personal-introduction&#34;&gt;Personal Introduction&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;🌱 I’m currently learning &lt;strong&gt;Natural Language Processing(NLP)&lt;/strong&gt;, &lt;strong&gt;T5 model&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;🔭 I have worked at &lt;strong&gt;Sinovation Ventures AI Institute &amp;amp; Langboat&lt;/strong&gt; as a &lt;strong&gt;Machine Learning Engineer Intern&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;💬 Discuss with me about &lt;strong&gt;machine learning, deep learning, transfer learning multimodal&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;connect-with-me&#34;&gt;Connect with me&lt;/h3&gt;
+&lt;!-- ## Professional Experience
+💼 Langboat
+- Machine Learning Enginer Intern, 2022.02 - 2022.06
+
+💼 Sinovation Ventures
+- Machine Learning Enginer Intern, 2021.10 = 2022.01
+
+💼 NVIDIA Joint-Lab on Mixed Reality
+- Software Developer
+
+💼 Packt
+- Software Developer in coop project --&gt;
+&lt;!-- ## Personal Introduction
+- 🌱 I’m currently learning **Natural Language Processing(NLP)**, **T5 model**
+
+- 🔭 I have worked at **Sinovation Ventures AI Institute &amp; Langboat** as a **Machine Learning Engineer Intern**
+
+- 💬 Discuss with me about **machine learning, deep learning, transfer learning multimodal** --&gt;
+&lt;h2 id=&#34;connect-with-me&#34;&gt;Connect with me&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;📫 Email: &lt;strong&gt;&lt;a class=&#34;link&#34; href=&#34;mailto:zhang.yuanthony@gmail.com&#34; &gt;zhang.yuanthony@gmail.com&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
